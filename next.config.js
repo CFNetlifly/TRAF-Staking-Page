@@ -3,7 +3,7 @@ module.exports = {
     env: {
         FONT_AWESOME_KEY: '8d70729523',
         ENDPOINT: 'http://localhost:8080',
-        // ENDPOINT: 'http://localhost:8080',
+        // ENDPOINT: 'http://193.176.87.163:8080',
     },
     async redirects() {
         return [
