@@ -1,15 +1,24 @@
-// import axios from 'axios';
+import axios from 'axios';
 
-// const endpoint = process.env.ENDPOINT1;
-// const endpoint1 = process.env.ENDPOINT;
+const ENDPOINT = process.env.ENDPOINT;
 
 const api = {
-    get: {
-        items: () => [{ id: 1 }, { id: 2 }, { id: 3 }],
+
+    get:{
+        genesisTokens: ({userAddress}) => {
+            axios({
+                method: 'get',
+                url: `${ENDPOINT}/genesisTokens/?user=${userAddress}`,
+            })
     },
-    post: {},
-    put: {},
-    delete: {},
+
+    stakedTokens : ({userAddress}) => {
+        axios({
+            method: 'get',
+            url: `${ENDPOINT}/stakedTokens/?user=${userAddress}`,
+        })
+    }
+}
 };
 
 export default api;
