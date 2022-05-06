@@ -21,7 +21,7 @@ const { FONT_AWESOME_KEY } = process.env;
 const { appName } = appConfig;
 
 function MyApp({ Component, pageProps }) {
-    // const getLayout = Component.getLayout || (page => page);
+    const getLayout = Component.getLayout || (page => page);
     return (
         <Provider store={store}>
             <CelesteProvider>
@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }) {
                 <ReactNotifications types={custom_notification_types} />
 
                 <Script src={`https://kit.fontawesome.com/${FONT_AWESOME_KEY}.js`} />
-                <Component {...pageProps} />
+                {getLayout(<Component {...pageProps} />)}
             </CelesteProvider>
         </Provider>
     );
