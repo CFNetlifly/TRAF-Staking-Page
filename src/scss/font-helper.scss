@@ -1,6 +1,6 @@
 // import your fonts here and create a font-face rule for them
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=PT+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=PT+Mono&display=swap&family=Space+Grotesk&display=swap');
 @font-face {
     font-family: 'Airborne';
     src: url('/media/fonts/Airborne.woff2');
@@ -17,6 +17,10 @@
 
 .has-font-ptmono {
     font-family: 'PT Mono', monospace;
+}
+
+.has-font-spacegrotesk {
+    font-family: 'Space Grotesk', sans-serif;
 }
 
 // *:not(.has-font-airborne):not(i) {

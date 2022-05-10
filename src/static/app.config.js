@@ -1,5 +1,5 @@
 const appConfig = {
-    appName: 'Template',
+    appName: 'TRAF Staking Page',
     appVersion: '1.0.0',
 };
 

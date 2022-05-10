@@ -1,0 +1,22 @@
+@use 'sass:color';
+@use 'sass:map';
+@import './vars';
+$levels: 11;
+
+@mixin generate-shadow-classes ($color, $colorName) {
+
+    @for $i from 0 to $levels {
+        @for $j from 0 to $levels {
+            @for $k from 0 to $levels {
+                .has-box-shadow-#{$i}-#{$j}-#{$k}-#{$colorName} {
+                    box-shadow: #{$i}px #{$j}px #{$k}px $color !important;
+            }
+        }
+    }
+}
+
+}
+
+@each $colorName, $color in $hcolors {
+    @include generate-shadow-classes($color, $colorName);
+}

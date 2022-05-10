@@ -8,7 +8,7 @@ const LoadingComponent = ({ msg, ...rest }) => {
     return (
         <div className={loading_component} {...rest}>
             <div className={lds_circle}>
-                <img src="media/logos/orcania.png" alt="" />
+                <img src="media/logos/traf-logo.png" alt="" />
             </div>
             <h1 className="subtitle has-text-white">{msg || 'Loading ...'}</h1>
         </div>

@@ -1,4 +1,4 @@
-$levels: 10;
+$levels: 30;
 
 @mixin generate-border-radius() {
     @for $i from 0 through $levels {

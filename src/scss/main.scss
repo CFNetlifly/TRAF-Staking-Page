@@ -1,4 +1,6 @@
 @import './font-helper';
+@import './shadow-helper';
+@import './customs';
 @import './color-helper';
 @import './gradient-helper';
 @import './z-index-helper';
@@ -13,6 +15,8 @@
 @import './bulma-helper';
 @import './bulma-custom-vars';
 @import '~bulma';
+
+@import 'src/components/commons/navbar/navbar.scss';
 
 html,
 body,

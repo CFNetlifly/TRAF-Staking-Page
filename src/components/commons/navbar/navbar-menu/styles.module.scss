@@ -1,0 +1,10 @@
+@import 'src/scss/vars';
+
+.item_button {
+    color: $hamber;        
+
+    &.active {
+        background: $hamber;
+        color: $hdark;
+    }
+}

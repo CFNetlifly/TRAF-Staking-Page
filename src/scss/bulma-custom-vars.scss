@@ -1,5 +1,11 @@
 @import './vars.scss';
 
+/* *~~*~~*~~*~~*~~* NAVBAR *~~*~~*~~*~~*~~* */
+$navbar-background-color: transparent;
+$navbar-dropdown-background-color: transparent;
+
+/* *~~*~~*~~*~~*~~* DROPDOWN *~~*~~*~~*~~*~~* */
+$dropdown-content-background-color: transparent;
 
 /* *~~*~~*~~*~~*~~* INPUT *~~*~~*~~*~~*~~* */
 
@@ -11,3 +17,7 @@ $input-focus-box-shadow-color: rgba($hpurple, 0.25);
 $button-focus-color: $hpurple;
 $button-focus-border-color: $hpurple;
 $button-focus-box-shadow-color: rgba($hpurple, 0.25);
+
+/* *~~*~~*~~*~~*~~* FOOTER *~~*~~*~~*~~*~~* */
+
+$footer-background-color: transparent;
