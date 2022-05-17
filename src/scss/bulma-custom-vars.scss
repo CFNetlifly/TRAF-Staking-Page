@@ -6,6 +6,7 @@ $navbar-dropdown-background-color: transparent;
 
 /* *~~*~~*~~*~~*~~* DROPDOWN *~~*~~*~~*~~*~~* */
 $dropdown-content-background-color: transparent;
+$dropdown-menu-min-width: 8rem;
 
 /* *~~*~~*~~*~~*~~* INPUT *~~*~~*~~*~~*~~* */
 
@@ -21,3 +22,5 @@ $button-focus-box-shadow-color: rgba($hpurple, 0.25);
 /* *~~*~~*~~*~~*~~* FOOTER *~~*~~*~~*~~*~~* */
 
 $footer-background-color: transparent;
+
+$dimensions:16, 24, 32, 48, 64, 96, 128, 256, 300;
