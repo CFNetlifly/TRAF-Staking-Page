@@ -1,4 +1,5 @@
 /* eslint-disable no-nested-ternary */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 
 import LoadingComponent from 'src/components/commons/loading-component';
@@ -8,6 +9,8 @@ import { useCelesteSelector } from '@celeste-js/react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetch_app_data_request } from 'src/redux/actions/appActions';
 
+// import DexProxy from 'src/classes/dex-proxy';
+
 const PreComponent = ({ children }) => {
     // celeste state
     const { web3Reducer } = useCelesteSelector(state => state);
@@ -15,12 +18,6 @@ const PreComponent = ({ children }) => {
     // appp reducer
     const dispatch = useDispatch();
     const { appReducer } = useSelector(state => state);
-    console.log('🚀 ~ file: index.js ~ line 18 ~ PreComponent ~ appReducer', appReducer);
-
-    useEffect(() => {
-        if (!web3Reducer.readonly_initialized) return;
-        dispatch(fetch_app_data_request());
-    }, [dispatch, web3Reducer.readonly_initialized]);
 
     return appReducer.loading ? (
         <div

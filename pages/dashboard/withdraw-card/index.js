@@ -1,8 +1,12 @@
 import CardLayout from 'src/layouts/card';
-import WithDrawButton from './select-button';
+import useEpochCountdown from 'src/components/hooks/useCountdown';
+import WithdrawButton from './select-button';
 // import WithDrawButton from './select-button';
 
 const WithdrawCard = () => {
+    const time = useEpochCountdown(1685019240);
+    const { days, hours, minutes, seconds } = time;
+
     return (
         <CardLayout
             content={
@@ -53,28 +57,20 @@ const WithdrawCard = () => {
                                 <div className="column is-flex is-justify-content-flex-end">
                                     <div className="columns is-gapless is-flex is-align-items-center">
                                         <div className="column is-flex is-flex-direction-column is-justify-content-flex-start">
-                                            <h4 className="has-text-white has-font-ptmono pr-2">Y</h4>
-                                            <h2 className="is-size-6 has-text-white has-font-ptmono">00:</h2>
-                                        </div>
-                                        <div className="column is-flex is-flex-direction-column is-justify-content-flex-start">
-                                            <h4 className="has-text-white has-font-ptmono pr-2">M</h4>
-                                            <h2 className="is-size-6 has-text-white has-font-ptmono">00:</h2>
-                                        </div>
-                                        <div className="column is-flex is-flex-direction-column is-justify-content-flex-start">
                                             <h4 className="has-text-white has-font-ptmono pr-2">D</h4>
-                                            <h2 className="is-size-6 has-text-white has-font-ptmono">00:</h2>
+                                            <h2 className="is-size-6 has-text-white has-font-ptmono">{days}:</h2>
                                         </div>
                                         <div className="column is-flex is-flex-direction-column is-justify-content-flex-start">
                                             <h4 className="has-text-white has-font-ptmono pr-2">H</h4>
-                                            <h2 className="is-size-6 has-text-white has-font-ptmono">00:</h2>
+                                            <h2 className="is-size-6 has-text-white has-font-ptmono">{hours}:</h2>
                                         </div>
                                         <div className="column is-flex is-flex-direction-column is-justify-content-flex-start">
-                                            <h4 className="has-text-white has-font-ptmono pr-2">m</h4>
-                                            <h2 className="is-size-6 has-text-white has-font-ptmono">00:</h2>
+                                            <h4 className="has-text-white has-font-ptmono pr-2">M</h4>
+                                            <h2 className="is-size-6 has-text-white has-font-ptmono">{minutes}:</h2>
                                         </div>
                                         <div className="column is-flex is-flex-direction-column is-justify-content-flex-start">
                                             <h4 className="has-text-white has-font-ptmono">S</h4>
-                                            <h2 className="is-size-6 has-text-white has-font-ptmono">00</h2>
+                                            <h2 className="is-size-6 has-text-white has-font-ptmono">{seconds}</h2>
                                         </div>
                                     </div>
                                 </div>
@@ -86,7 +82,7 @@ const WithdrawCard = () => {
                             <div className="columns is-flex is-align-items-center">
                                 <div className="column is-flex is-justify-content-flex-start">
                                     <h2 className="subtitle is-size-6 has-text-white has-font-spacegrotesk">
-                                        TRAF Earned
+                                        OCA Earned
                                     </h2>
                                 </div>
                                 <div className="column is-flex is-justify-content-flex-end">
@@ -97,7 +93,7 @@ const WithdrawCard = () => {
                                 className="has-background-hamber-o-2 mt-0"
                                 style={{ marginLeft: '-1.5rem', marginRight: '-1.5rem' }}
                             />
-                            <WithDrawButton />
+                            <WithdrawButton time={time} />
                         </div>
                     </div>
                 </div>

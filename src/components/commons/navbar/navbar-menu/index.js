@@ -26,8 +26,8 @@ const NavbarMenu = () => {
             <div className=" has-background-hgrao5 has-border-radius-20 p-1">
                 <div className="columns">
                     {navItems.map(item => (
-                        <div className="column">
-                            <Link href={item.href} key={item.id} passHref>
+                        <div className="column" key={item.id}>
+                            <Link href={item.href} passHref>
                                 <button
                                     key={item.id}
                                     className={`unstyled-button ${item_button} 

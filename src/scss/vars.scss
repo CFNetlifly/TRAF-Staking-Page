@@ -1,16 +1,19 @@
 @use 'sass:map';
-
+$hwhite: #fff;
 $hpurple: #bf9dff;
 $hblue: #72ddf7;
 $hdark: #000000;
 $hamber: #FFC000;
 $hred: #A72608;
+$hred2: #FF2727;
 $hblack: #090C02;
 $hblack2: #151515;
 
 $hgra: linear-gradient(180deg, rgb(255, 192, 0) 0%, rgb(167, 38, 8) 100%);
 $hgrao5: linear-gradient(180deg, rgba(255, 192, 0, 0.5) 0%, rgba(167, 38, 8, 0.5) 100%);
 $hgra1: linear-gradient(90deg, $hpurple 0%, $hblue 100%);
+$hgra2: linear-gradient(135deg, $hamber,rgba($hamber, 0) 25%, rgba($hred, 0) 75%, $hred 100%);
+
 $hgrafooter: linear-gradient(90deg, rgba(255, 192, 0, 0.25) 21.98%, rgba(167, 38, 8, 0.25) 79.84%);
 
 $hcolors: (
@@ -19,14 +22,17 @@ $hcolors: (
     hdark: $hdark,
     hamber: $hamber,
     hred: $hred,
+    hred2: $hred2,
     hblack: $hblack,
     hblack2: $hblack2,
+    hwhite: $hwhite,
 
 );
 
 $hgras: (
     hgra: $hgra,
     hgra1: $hgra1,
+    hgra2: $hgra2,
     hgrao5: $hgrao5,
     hgrafooter: $hgrafooter,
 );

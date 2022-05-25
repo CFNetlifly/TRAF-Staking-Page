@@ -92,7 +92,7 @@ const Navbar = () => {
                 </div>
 
                 <div className={`navbar-menu ${mobileActive ? 'is-active animate__animated animate__fadeInLeft' : ''}`}>
-                    <div className="navbar-start">
+                    <div className="navbar-start custom-navbar">
                         <NavbarMenu />
                     </div>
                     <ul className="navbar-end">

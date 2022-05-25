@@ -1,11 +1,32 @@
 import { getLayout as getPageTitleLayout } from 'src/layouts/page-title';
 import { getLayout as getMainLayout } from 'src/layouts/main';
-import { ConnectedWrapper } from '@celeste-js/react';
+import { ConnectedWrapper, useCelesteSelector } from '@celeste-js/react';
 import ConnectWallet from 'src/components/commons/connect-wallet';
+import fetch_genesis_tokens_request_thunk from 'src/redux/actions/genesisTokensActions';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import appConfig from 'src/static/app.config';
 import StakingCard from './staking-card';
 import SubmitFooter from './staking-footer';
 
 const Staking = () => {
+    const { walletReducer, web3Reducer } = useCelesteSelector(state => state);
+    const { genesisTokensReducer } = useSelector(state => state);
+    console.log('🚀 ~ file: index.js ~ line 15 ~ Staking ~ genesisTokensReducer', genesisTokensReducer);
+    const dispatch = useDispatch();
+
+    // useEffect(() => {
+    //     if (!web3Reducer.initialized || walletReducer.address === null) return;
+    //     dispatch(
+    //         fetch_genesis_tokens_request_thunk({
+    //             requestName: appConfig.api[0].name,
+    //             params: {
+    //                 userAddress: walletReducer.address,
+    //             },
+    //         })
+    //     );
+    // }, [dispatch, walletReducer.address, web3Reducer.initialized]);
+
     return (
         <>
             <section className="section has-text-centered has-font-montserrat ">

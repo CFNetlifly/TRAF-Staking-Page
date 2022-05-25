@@ -25,7 +25,7 @@ const animateCSS = (element, animation, prefix = 'animate__') =>
 
 const Modal = props => {
     // props
-    const { children, isOpen } = props;
+    const { children, isOpen, closeBtn } = props;
 
     // reducer
     const { currentModal, animation } = useSelector(state => state.modalReducer);
@@ -33,7 +33,7 @@ const Modal = props => {
     const dispatch = useDispatch();
 
     const closeAfterAnimation = async () => {
-        await animateCSS('#____modal', 'fadeOutDown');
+        await animateCSS('#____modal', 'fadeOut');
         dispatch(close_modal());
     };
 
@@ -43,14 +43,10 @@ const Modal = props => {
         const handleKeyDown = e => {
             if (e.key === 'Escape') dispatch(start_close_modal());
         };
-
         const handleClick = () => dispatch(start_close_modal());
-
         const elmnt = document.querySelector('#____modal-bg');
-
         window.addEventListener('keydown', handleKeyDown);
         elmnt.addEventListener('click', handleClick);
-
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
             elmnt.removeEventListener('click', handleClick);
@@ -68,11 +64,22 @@ const Modal = props => {
 
     return isOpen ? (
         <div className="modal is-active">
-            <div id="____modal-bg" className="modal-background has-background-hblack2-o-2 has-bg-blur-2" />
-            <div id="____modal" className="modal-content px-4 animate__faster animate__animated animate__fadeInDown">
+            <div id="____modal-bg" className="modal-background has-background-a-o-5 has-bg-blur-2" />
+            <div
+                id="____modal"
+                className="modal-content px-4 animate__faster animate__animated animate__fadeIn"
+                style={{ display: 'grid', placeItems: 'center', animationDuration: '0.25s' }}
+            >
                 {children}
             </div>
-            <button className="modal-close is-large" aria-label="close" onClick={closeAfterAnimation} type="button" />
+            {closeBtn ? (
+                <button
+                    className="modal-close is-large"
+                    aria-label="close"
+                    onClick={closeAfterAnimation}
+                    type="button"
+                />
+            ) : null}
         </div>
     ) : null;
 };
