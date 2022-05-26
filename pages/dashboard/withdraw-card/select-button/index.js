@@ -17,7 +17,7 @@ const WithdrawButton = ({ time }) => {
                         console.log(appConfig.modals[1].name);
                     }}
                 >
-                    <span className="has-text-weight-bold">Select</span>
+                    <span className="has-font-montserrat has-text-weight-bold">Select</span>
                 </button>
             </div>
         </div>
@@ -28,7 +28,7 @@ const WithdrawButton = ({ time }) => {
                     className="button is-fullwidth is-rounded is-borderless has-background-hamber-o-2 has-text-hamber"
                     type="submit"
                 >
-                    <span className="has-text-weight-bold">Select</span>
+                    <span className="has-font-montserrat has-text-weight-bold">Select</span>
                 </button>
             </div>
         </div>

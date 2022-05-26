@@ -12,8 +12,6 @@ const WithdrawEarlyModal = () => {
     const dispatch = useDispatch();
 
     const { withdrawEarlyModal } = useSelector(state => state.modalReducer);
-    console.log('🚀 ~ file: index.js ~ line 14 ~ WithdrawEarlyModal ~ withdrawEarlyModal', withdrawEarlyModal);
-
     const closeModal = () => dispatch(start_close_modal());
 
     return (
@@ -40,7 +38,7 @@ const WithdrawEarlyModal = () => {
                                 <form>
                                     <div className="content">
                                         <p className="is-size-5 has-text-white has-font-spacegrotesk">
-                                            You are about to withdraw an NFT from your wallet earlier than expected. By
+                                            You are about to withdraw your NFT from staking earlier than expected. By
                                             doing so, you will lose the expected rewards.
                                         </p>
                                     </div>

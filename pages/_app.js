@@ -16,7 +16,7 @@ import WithdrawEarlyModal from 'src/components/modals/withdraw-early-modal';
 import 'src/scss/main.scss';
 import 'react-notifications-component/dist/theme.css';
 import 'animate.css';
-import PreComponent from 'src/pre';
+import FetchWalletData from 'src/components/commons/external-data-handler';
 
 const CelesteProvider = dynamic(() => import('src/components/celeste'), { ssr: false });
 
@@ -28,17 +28,16 @@ function MyApp({ Component, pageProps }) {
     return (
         <Provider store={store}>
             <CelesteProvider>
-                {/* <PreComponent> */}
                 <Head>
                     <title>{appName}</title>
                 </Head>
                 <ReactNotifications types={custom_notification_types} />
+                <FetchWalletData />
                 <LockTimeModal />
                 <WithdrawEarlyModal />
 
                 <Script src={`https://kit.fontawesome.com/${FONT_AWESOME_KEY}.js`} />
                 {getLayout(<Component {...pageProps} />)}
-                {/* </PreComponent> */}
             </CelesteProvider>
         </Provider>
     );

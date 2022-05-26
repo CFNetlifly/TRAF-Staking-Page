@@ -10,6 +10,7 @@ import exampleReducer from './reducers/exampleReducer';
 import modalReducer from './reducers/modalReducer';
 import genesisTokensReducer from './reducers/genesisTokensReducer';
 import stakedTokensReducer from './reducers/stakedTokensReducer';
+import walletDataReducer from './reducers/walletDataReducer';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -19,6 +20,7 @@ const reducer = combineReducers({
     modalReducer,
     genesisTokensReducer,
     stakedTokensReducer,
+    walletDataReducer,
 });
 
 const store = createStore(reducer, applyMiddleware(thunk, sagaMiddleware));

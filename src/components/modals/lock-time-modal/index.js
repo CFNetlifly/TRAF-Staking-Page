@@ -44,7 +44,9 @@ const LockTimeModal = () => {
                         <ModalCardLayout
                             header={
                                 <div className="is-flex is-flex-direction-row is-justify-content-space-between">
-                                    <h1 className="subtitle is-size-5 has-text-white is-flex-grow-a">Lock Time</h1>
+                                    <h1 className="subtitle is-size-5 has-text-white is-flex-grow-a has-font-montserrat">
+                                        Lock Time
+                                    </h1>
                                     <button
                                         className="has-text-white is-small is-flex unstyled-button"
                                         type="button"
@@ -56,7 +58,7 @@ const LockTimeModal = () => {
                             }
                             content={
                                 <form>
-                                    <h1 className="subtitle is-size-5 has-text-white ">
+                                    <h1 className="subtitle is-size-5 has-text-white has-font-spacegrotesk">
                                         Choose a convenient lock time
                                     </h1>
 
@@ -76,7 +78,9 @@ const LockTimeModal = () => {
                                                     data-roi-display={item.roiDisplay}
                                                     onClick={handleMonthClick}
                                                 >
-                                                    <b>{item.name}</b>
+                                                    <span className="has-font-montserrat has-text-weight-bold">
+                                                        {item.buttonName}
+                                                    </span>
                                                 </button>
                                             </div>
                                         </div>

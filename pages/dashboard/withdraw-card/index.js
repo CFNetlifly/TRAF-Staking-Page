@@ -1,9 +1,10 @@
 import CardLayout from 'src/layouts/card';
 import useEpochCountdown from 'src/components/hooks/useCountdown';
+import CardPicture from 'src/components/commons/card-picture';
 import WithdrawButton from './select-button';
 // import WithDrawButton from './select-button';
 
-const WithdrawCard = () => {
+const WithdrawCard = ({ id }) => {
     const time = useEpochCountdown(1685019240);
     const { days, hours, minutes, seconds } = time;
 
@@ -14,13 +15,7 @@ const WithdrawCard = () => {
                     <div className="columns is-centered">
                         <div className="column">
                             <div className="column is-flex is-justify-content-center">
-                                <figure className="image is-300x300">
-                                    <img
-                                        className="has-border-radius-30"
-                                        src="media/nfts/episode2.jpg"
-                                        alt="Episode 3"
-                                    />
-                                </figure>
+                                <CardPicture id={1} />
                             </div>
                             <div className="column">
                                 <h1 className="subtitle is-size-4 has-text-white has-font-spacegrotesk">

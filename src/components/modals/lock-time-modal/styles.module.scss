@@ -24,4 +24,8 @@
         background: $hamber !important;
         color: $hdark !important;
     }
+    &:hover {
+        background: rgba($color: $hamber, $alpha: 0.2) !important;
+        color: $hamber !important;
+    }
 }

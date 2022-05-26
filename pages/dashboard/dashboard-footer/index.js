@@ -1,6 +1,6 @@
 const SubmitFooter = ({}) => {
     return (
-        <nav className="navbar is-fixed-bottom has-background-hgrafooter">
+        <nav className="navbar is-fixed-bottom has-background-hgrafooter has-font-montserrat">
             <div className="navbar-start">
                 <div className="navbar-item has-text-white">
                     <div className="field is-grouped">
