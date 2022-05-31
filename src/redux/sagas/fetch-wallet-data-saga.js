@@ -1,13 +1,25 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import api from 'src/api';
+import lockTime from 'src/static/lock-time-stats';
 import { FETCH_WALLET_DATA_REQUEST } from '../constants';
-import { fetch_wallet_data_failure, fetch_wallet_data_success } from '../actions';
+import { fetch_wallet_data_failure, fetch_wallet_data_success, add_genesis_nft } from '../actions';
 
 function* fetch_wallet_data_saga(action) {
     const { userAddress } = action.payload;
 
     try {
         const res1 = yield call(api.get.genesisTokens, { userAddress });
+        if (res1.data.genesisholder) {
+            const nfts = [];
+            res1.data.nfts.forEach(tokenId => {
+                nfts.push({
+                    ...lockTime[0],
+                    tokenId,
+                });
+            });
+            yield put(add_genesis_nft(nfts));
+        }
+
         const res2 = yield call(api.get.stakedTokens, { userAddress });
 
         const data = {

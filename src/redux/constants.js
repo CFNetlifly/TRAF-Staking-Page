@@ -37,3 +37,26 @@ export const FETCH_WALLET_DATA_REQUEST = 'FETCH_WALLET_DATA_REQUEST';
 export const FETCH_WALLET_DATA_SUCCESS = 'FETCH_WALLET_DATA_SUCCESS';
 export const FETCH_WALLET_DATA_FAILURE = 'FETCH_WALLET_DATA_FAILURE';
 export const CLEAN_WALLET_DATA = 'CLEAN_WALLET_DATA';
+
+/* *~~*~~*~~*~~*~~* GENESIS NFT *~~*~~*~~*~~*~~* */
+
+export const ADD_GENESIS_NFT = 'ADD_GENESIS_NFT';
+export const REMOVE_GENESIS_NFT = 'REMOVE_GENESIS_NFT';
+export const EDIT_GENESIS_NFT = 'EDIT_GENESIS_NFT';
+
+/* *~~*~~*~~*~~*~~* TOKEN SELECTED *~~*~~*~~*~~*~~* */
+
+export const ADD_TOKEN = 'ADD_TOKEN';
+export const REMOVE_TOKEN = 'REMOVE_TOKEN';
+export const REMOVE_ALL_TOKENS = 'REMOVE_ALL_TOKENS';
+
+/* *~~*~~*~~*~~*~~* APPROVE NFT *~~*~~*~~*~~*~~* */
+export const APPROVE_NFT_REQUEST = 'APPROVE_NFT_REQUEST';
+export const APPROVE_NFT_SUCCESS = 'APPROVE_NFT_SUCCESS';
+export const APPROVE_NFT_FAILURE = 'APPROVE_NFT_FAILURE';
+
+/* *~~*~~*~~*~~*~~* WITHDRAW NFT *~~*~~*~~*~~*~~* */
+
+export const WITHDRAW_NFT_REQUEST = 'WITHDRAW_NFT_REQUEST';
+export const WITHDRAW_NFT_SUCCESS = 'WITHDRAW_NFT_SUCCESS';
+export const WITHDRAW_NFT_FAILURE = 'WITHDRAW_NFT_FAILURE';

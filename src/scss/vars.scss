@@ -1,7 +1,8 @@
 @use 'sass:map';
 $hwhite: #fff;
 $hpurple: #bf9dff;
-$hblue: #72ddf7;
+$hblue: #1573bf;
+$hgreen: #21de54;
 $hdark: #000000;
 $hamber: #FFC000;
 $hred: #A72608;
@@ -26,6 +27,7 @@ $hcolors: (
     hblack: $hblack,
     hblack2: $hblack2,
     hwhite: $hwhite,
+    hgreen: $hgreen,
 
 );
 

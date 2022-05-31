@@ -15,7 +15,6 @@ const PreComponent = ({ children }) => {
     // appp reducer
     const dispatch = useDispatch();
     const { appReducer } = useSelector(state => state);
-    console.log('🚀 ~ file: index.js ~ line 18 ~ PreComponent ~ appReducer', appReducer);
 
     useEffect(() => {
         if (!web3Reducer.readonly_initialized) return;

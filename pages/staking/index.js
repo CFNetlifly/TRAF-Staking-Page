@@ -1,30 +1,16 @@
+/* eslint-disable no-nested-ternary */
 import { getLayout as getPageTitleLayout } from 'src/layouts/page-title';
 import { getLayout as getMainLayout } from 'src/layouts/main';
-import { ConnectedWrapper, useCelesteSelector } from '@celeste-js/react';
+import { ConnectedWrapper, NetworkWrapper, SwitchNetworkButton } from '@celeste-js/react';
 import ConnectWallet from 'src/components/commons/connect-wallet';
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import appConfig from 'src/static/app.config';
+import { useSelector } from 'react-redux';
+import LoadingComponent from 'src/components/loading-component';
 import StakingCard from './staking-card';
 import SubmitFooter from './staking-footer';
 
 const Staking = () => {
-    const { walletReducer, web3Reducer } = useCelesteSelector(state => state);
-    const { genesisTokensReducer } = useSelector(state => state);
-    // console.log('🚀 ~ file: index.js ~ line 15 ~ Staking ~ genesisTokensReducer', genesisTokensReducer);
-    const dispatch = useDispatch();
-
-    // useEffect(() => {
-    //     if (!web3Reducer.initialized || walletReducer.address === null) return;
-    //     dispatch(
-    //         fetch_genesis_tokens_request_thunk({
-    //             requestName: appConfig.api[0].name,
-    //             params: {
-    //                 userAddress: walletReducer.address,
-    //             },
-    //         })
-    //     );
-    // }, [dispatch, walletReducer.address, web3Reducer.initialized]);
+    const { walletDataReducer } = useSelector(state => state);
+    // console.log('🚀 ~ file: index.js ~ line 13 ~ Staking ~ walletDataReducer', walletDataReducer);
 
     return (
         <section className="section has-text-centered has-font-montserrat ">
@@ -43,11 +29,64 @@ const Staking = () => {
                         </div>
                     }
                 >
-                    <p className="subtitle is-size-7-mobile has-text-white has-font-spacegrotesk">
-                        Stake your TRAF NFTs to earn $TRAF tokens
-                    </p>
-                    <StakingCard />
-                    <SubmitFooter />
+                    <NetworkWrapper
+                        info={
+                            <div className="content">
+                                <p className="subtitle is-size-7-mobile has-text-white has-font-spacegrotesk">
+                                    In order to view your dashboard, please change your network to ethereum mainnet
+                                </p>
+                                <div className="py-6">
+                                    <SwitchNetworkButton
+                                        chainId={4}
+                                        className="button is-rounded has-text-black has-background-hamber-o-7 has-text-weight-bold is-borderless has-box-shadow-0-0-10-hamber"
+                                        onErrorCB={e => console.log(e)}
+                                    >
+                                        <span className="icon">
+                                            <i className="fas fa-exchange-alt" />
+                                        </span>
+                                        <span>Switch to ETH Mainnet</span>
+                                    </SwitchNetworkButton>
+                                </div>
+                            </div>
+                        }
+                    >
+                        {walletDataReducer.success ? (
+                            <>
+                                <p className="subtitle is-size-7-mobile has-text-white has-font-spacegrotesk">
+                                    Stake your TRAF NFTs to earn $TRAF tokens
+                                </p>
+                                {walletDataReducer.data.genesisTokens.genesisholder ? (
+                                    <div className="columns">
+                                        {walletDataReducer.data.genesisTokens.nfts.slice(0, 3).map(genesisToken => (
+                                            <div className="column" key={genesisToken}>
+                                                <StakingCard tokenId={genesisToken} />
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <div className="content py-4">
+                                        <p className="subtitle is-size-7-mobile has-text-white has-font-spacegrotesk">
+                                            You currently don&#39;t own any TRAF NFTs, please purchase one to stake.
+                                        </p>
+                                    </div>
+                                )}
+                                {walletDataReducer.data.genesisTokens.genesisholder ? <SubmitFooter /> : null}
+                            </>
+                        ) : walletDataReducer.loading ? (
+                            <div className="content py-6">
+                                <LoadingComponent />
+                                <div className="py-6" />
+                            </div>
+                        ) : (
+                            <div className="content">
+                                <p className="subtitle is-size-7-mobile has-text-white has-font-spacegrotesk">
+                                    An error occurred while loading your wallet data. Please try again later.
+                                </p>
+                                <div className="py-6" />
+                                <br />
+                            </div>
+                        )}
+                    </NetworkWrapper>
                 </ConnectedWrapper>
             </div>
         </section>

@@ -1,16 +1,8 @@
 import Modal from 'src/components/commons/modal';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-    start_close_modal,
-    set_lock_time,
-    set_lock_time_name,
-    set_apr,
-    set_roi,
-    set_lock_time_button_name,
-    set_roi_display,
-} from 'src/redux/actions';
+import { start_close_modal, edit_genesis_nft } from 'src/redux/actions';
 import ModalCardLayout from 'src/layouts/modal-card';
-import lockTime from 'src/static/lock-time';
+import lockTime from 'src/static/lock-time-stats';
 
 import styles from './styles.module.scss';
 
@@ -20,19 +12,18 @@ const LockTimeModal = () => {
     const dispatch = useDispatch();
 
     const { lockTimeModal } = useSelector(state => state.modalReducer);
+    // console.log('🚀 ~ file: index.js ~ line 15 ~ LockTimeModal ~ lockTimeModal', lockTimeModal);
+
     const { lockTimeReducer } = useSelector(state => state);
+    // console.log('🚀 ~ file: index.js ~ line 18 ~ LockTimeModal ~ lockTimeReducer', lockTimeReducer);
 
     const closeModal = () => dispatch(start_close_modal());
 
     /* *~~*~~*~~*~~*~~* CLICK HANDLERS *~~*~~*~~*~~*~~*~~*~~* */
 
     const handleMonthClick = e => {
-        dispatch(set_lock_time(parseInt(e.currentTarget.dataset.lockTime, 10)));
-        dispatch(set_lock_time_button_name(e.currentTarget.dataset.lockTimeButtonName));
-        dispatch(set_apr(parseInt(e.currentTarget.dataset.apr, 10)));
-        dispatch(set_roi(parseInt(e.currentTarget.dataset.roi, 10)));
-        dispatch(set_roi_display(e.currentTarget.dataset.roiDisplay));
-        dispatch(set_lock_time_name(e.currentTarget.dataset.lockTimeName));
+        const lockData = JSON.parse(e.currentTarget.dataset.lockData);
+        dispatch(edit_genesis_nft({ ...lockData, tokenId: lockTimeModal.data }));
         closeModal();
     };
 
@@ -63,23 +54,19 @@ const LockTimeModal = () => {
                                     </h1>
 
                                     {lockTime.map(item => (
-                                        <div className="columns" key={item.id}>
+                                        // console.log('🚀 ~ file: index.js ~ line 57 ~ LockTimeModal ~ item', item),
+                                        <div className="columns" key={item.uniqueId}>
                                             <div className="column">
                                                 <button
                                                     type="button"
                                                     className={`button has-border-1-hwhite-o-5 ${item_button} ${
                                                         lockTimeReducer.lockTime === item.value ? active : ''
                                                     }`}
-                                                    data-lock-time={item.value}
-                                                    data-lock-time-name={item.name}
-                                                    data-lock-time-button-name={item.buttonName}
-                                                    data-roi={item.roi}
-                                                    data-apr={item.apr}
-                                                    data-roi-display={item.roiDisplay}
+                                                    data-lock-data={JSON.stringify(item)}
                                                     onClick={handleMonthClick}
                                                 >
                                                     <span className="has-font-montserrat has-text-weight-bold">
-                                                        {item.buttonName}
+                                                        {item.name}
                                                     </span>
                                                 </button>
                                             </div>

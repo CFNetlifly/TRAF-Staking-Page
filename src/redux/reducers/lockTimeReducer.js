@@ -1,63 +1,39 @@
 import {
-    SET_LOCK_TIME,
-    SET_LOCK_TIME_NAME,
-    SET_ROI,
-    SET_APR,
-    SET_LOCK_TIME_BUTTON_NAME,
-    SET_ROI_DISPLAY,
+    // SET_LOCK_TIME,
+    // SET_LOCK_TIME_NAME,
+    // SET_ROI,
+    // SET_APR,
+    // SET_LOCK_TIME_BUTTON_NAME,
+    // SET_ROI_DISPLAY,
+    ADD_GENESIS_NFT,
+    EDIT_GENESIS_NFT,
+    REMOVE_GENESIS_NFT,
 } from '../constants';
 
 const defaultState = {
-    lockTime: 2592000,
-    lockTimeName: '1 Month - 4% APR',
-    lockTimeButtonName: '1 Month',
-    apr: 4,
-    roi: 50,
-    roiDisplay: '50',
+    nfts: [],
 };
 
 // eslint-disable-next-line default-param-last
-const reducer = (state = defaultState, { type, payload }) => {
-    switch (type) {
-        case SET_LOCK_TIME:
+const reducer = (state = defaultState, action) => {
+    switch (action.type) {
+        case ADD_GENESIS_NFT:
             return {
                 ...state,
-                lockTime: payload,
+                nfts: [...state.nfts, ...action.payload],
             };
-
-        case SET_LOCK_TIME_NAME:
+        case EDIT_GENESIS_NFT:
             return {
                 ...state,
-                lockTimeName: payload,
+                nfts: [...state.nfts.filter(nft => nft.tokenId !== action.payload.tokenId), action.payload],
             };
-
-        case SET_LOCK_TIME_BUTTON_NAME:
+        case REMOVE_GENESIS_NFT:
             return {
                 ...state,
-                lockTimeButtonName: payload,
+                nfts: [...state.nfts.filter(nft => nft.tokenId !== action.payload)],
             };
-
-        case SET_ROI:
-            return {
-                ...state,
-                roi: payload,
-            };
-
-        case SET_ROI_DISPLAY:
-            return {
-                ...state,
-                roiDisplay: payload,
-            };
-
-        case SET_APR:
-            return {
-                ...state,
-                apr: payload,
-            };
-
         default:
             return state;
     }
 };
-
 export default reducer;

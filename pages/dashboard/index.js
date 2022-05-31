@@ -1,6 +1,7 @@
+/* eslint-disable no-nested-ternary */
 import { getLayout as getPageTitleLayout } from 'src/layouts/page-title';
 import { getLayout as getMainLayout } from 'src/layouts/main';
-import { ConnectedWrapper } from '@celeste-js/react';
+import { ConnectedWrapper, NetworkWrapper, SwitchNetworkButton } from '@celeste-js/react';
 import ConnectWallet from 'src/components/commons/connect-wallet';
 import { useSelector } from 'react-redux';
 import LoadingComponent from 'src/components/loading-component';
@@ -9,11 +10,8 @@ import SubmitFooter from './dashboard-footer';
 
 const Dashboard = () => {
     const { walletDataReducer } = useSelector(state => state);
-    const { data } = walletDataReducer;
-    const { genesisTokens } = data;
-    // const numberOfGenesisTokens = genesisTokens.nfts.length;
 
-    return walletDataReducer.success ? (
+    return (
         <section className="section has-text-centered has-font-montserrat ">
             <h3 className="subtitle is-size-7-mobile has-text-weight-bold has-text-hamber">
                 Welcome to TRAF Dashoard Page
@@ -30,16 +28,71 @@ const Dashboard = () => {
                         </div>
                     }
                 >
-                    <p className="subtitle is-size-7-mobile has-text-white has-font-spacegrotesk">
-                        You currently have {} staked NFTs
-                    </p>
-                    <WithdrawCard />
-                    <SubmitFooter />
+                    <NetworkWrapper
+                        info={
+                            <div className="content">
+                                <p className="subtitle is-size-7-mobile has-text-white has-font-spacegrotesk">
+                                    In order to view your dashboard, please change your network to ethereum mainnet
+                                </p>
+                                <div className="py-6">
+                                    <SwitchNetworkButton
+                                        chainId={4}
+                                        className="button is-rounded has-text-black has-background-hamber-o-7 has-text-weight-bold is-borderless has-box-shadow-0-0-10-hamber"
+                                        onErrorCB={e => console.log(e)}
+                                    >
+                                        <span className="icon">
+                                            <i className="fas fa-exchange-alt" />
+                                        </span>
+                                        <span>Switch to ETH Mainnet</span>
+                                    </SwitchNetworkButton>
+                                </div>
+                            </div>
+                        }
+                    >
+                        {walletDataReducer.success ? (
+                            <>
+                                {walletDataReducer.data.stakedTokens.staker ? (
+                                    <>
+                                        <p className="subtitle is-size-7-mobile has-text-white has-font-spacegrotesk">
+                                            You currently have {walletDataReducer.data.stakedTokens.nfts.length} staked
+                                            NFTs
+                                        </p>
+                                        <div className="columns">
+                                            {walletDataReducer.data.stakedTokens.nfts.slice(0, 3).map(stakedToken => (
+                                                <div className="column" key={stakedToken}>
+                                                    <WithdrawCard tokenId={stakedToken} />
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </>
+                                ) : (
+                                    <div className="content py-4">
+                                        <p className="subtitle is-size-7-mobile has-text-white has-font-spacegrotesk">
+                                            You currently don&#39;t have any staked NFTs, please stake one to view your
+                                            dashboard.
+                                        </p>
+                                    </div>
+                                )}
+                                {walletDataReducer.data.stakedTokens.staker ? <SubmitFooter /> : null}
+                            </>
+                        ) : walletDataReducer.loading ? (
+                            <div className="content py-6">
+                                <LoadingComponent />
+                                <div className="py-6" />
+                            </div>
+                        ) : (
+                            <div className="content">
+                                <p className="subtitle is-size-7-mobile has-text-white has-font-spacegrotesk">
+                                    An error occurred while loading your wallet data. Please try again later.
+                                </p>
+                                <div className="py-6" />
+                                <br />
+                            </div>
+                        )}
+                    </NetworkWrapper>
                 </ConnectedWrapper>
             </div>
         </section>
-    ) : (
-        <LoadingComponent />
     );
 };
 

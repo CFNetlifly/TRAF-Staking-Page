@@ -6,6 +6,7 @@ const useEpochCountdown = epochUnixTime => {
     const [minutes, setMinutes] = useState(0);
     const [seconds, setSeconds] = useState(0);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const targetDate = new Date(0);
     targetDate.setUTCSeconds(epochUnixTime);
 
@@ -32,16 +33,15 @@ const useEpochCountdown = epochUnixTime => {
 
             if (distance <= 0) {
                 clearInterval(interval);
-                setDays(0);
-                setHours(0);
-                setMinutes(0);
-                setSeconds(0);
+                setDays(String(0).padStart(2, '0'));
+                setHours(String(0).padStart(2, '0'));
+                setMinutes(String(0).padStart(2, '0'));
+                setSeconds(String(0).padStart(2, '0'));
             }
 
             return () => clearInterval(interval);
         }, 1000);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [targetDate]);
 
     return { days, hours, minutes, seconds };
 };
