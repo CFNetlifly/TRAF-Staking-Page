@@ -8,11 +8,9 @@ const SubmitFooter = () => {
     const dispatch = useDispatch();
     const { tokenSelectedReducer, withdrawNFTReducer } = useSelector(state => state);
     const { walletReducer } = useCelesteSelector(state => state);
-    // console.log('🚀 ~ file: index.js ~ line 11 ~ SubmitFooter ~ tokenSelectedReducer', tokenSelectedReducer);
 
     const handleWithdraw = async () => {
         const nftData = tokenSelectedReducer.stakedTokens;
-        console.log('🚀 ~ file: index.js ~ line 15 ~ handleWithdraw ~ nftData', nftData);
 
         const TRAF = TRAFProxy();
 

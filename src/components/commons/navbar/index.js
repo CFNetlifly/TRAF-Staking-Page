@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Image from 'next/image';
+import Link from 'next/link';
 import { DisconnectButton, useCelesteSelector, ConnectedWrapper, ConnectButton } from '@celeste-js/react';
 
 import { useState, useEffect } from 'react';
@@ -70,11 +71,13 @@ const Navbar = () => {
 
     return (
         <nav
-            className="navbar has-centered-menu has-font-spacegrotesk is-fixed-top pb-3"
+            className={`navbar custom-navbar has-centered-menu is-fixed-top 
+        ${bgColor ? 'has-navbar-bg-color' : ''} 
+        ${scrollingDown ? 'is-hidden-up' : ''}`}
             role="navigation"
             aria-label="main navigation"
         >
-            <div className="container is-fluid">
+            <div className="container">
                 <div className="navbar-brand">
                     <Image className="navbar-item py-2" src="/media/logos/traf-logo.png" width={40} height={52} />
                     <a
@@ -84,6 +87,7 @@ const Navbar = () => {
                         aria-expanded="false"
                         data-target="navbarBasicExample"
                         onClick={handleHamburgerClick}
+                        style={{ zIndex: '11' }}
                     >
                         <span aria-hidden="true" />
                         <span aria-hidden="true" />
@@ -92,10 +96,49 @@ const Navbar = () => {
                 </div>
 
                 <div className={`navbar-menu ${mobileActive ? 'is-active animate__animated animate__fadeInLeft' : ''}`}>
-                    <div className="navbar-start custom-navbar">
+                    <div className="navbar-start is-hidden-mobile centered-menu">
                         <NavbarMenu />
                     </div>
-                    <ul className="navbar-end">
+                    <div className="navbar-start is-hidden-desktop">
+                        <div className="navbar-item">
+                            <Link href="/staking">
+                                <a className="has-text-hamber">Staking</a>
+                            </Link>
+                        </div>
+                        <div className="navbar-item">
+                            <Link href="/dashboard">
+                                <a className="has-text-hamber">Dashboard</a>
+                            </Link>
+                        </div>
+                    </div>
+                    <div className="navbar-end is-hidden-desktop">
+                        <div className="navbar-item">
+                            <ConnectedWrapper disconnectedComponent={<></>}>
+                                <h1 className="has-text-white">
+                                    Welcome{' '}
+                                    <span className="has-text-hamber has-text-weight-bold">
+                                        {walletReducer.address && getAddressReduced(walletReducer.address)}
+                                    </span>
+                                </h1>
+                                <div className="is-flex py-5">
+                                    <DisconnectButton
+                                        className="button is-rounded has-text-hamber has-background-transparent has-border-1-hamber-o-10"
+                                        type="button"
+                                        onErrorCB={e => {
+                                            console.log(e);
+                                        }}
+                                    >
+                                        <span className="icon">
+                                            <i className="fas fa-sign-out-alt" />
+                                        </span>
+                                        <span>Disconnect Wallet</span>
+                                    </DisconnectButton>
+                                </div>
+                            </ConnectedWrapper>
+                        </div>
+                    </div>
+
+                    <ul className="navbar-end is-hidden-mobile">
                         <li className="navbar-list is-flex is-align-items-center">
                             <ConnectedWrapper
                                 disconnectedComponent={

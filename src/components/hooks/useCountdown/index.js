@@ -30,7 +30,6 @@ const useEpochCountdown = epochUnixTime => {
             setSeconds(String(s).padStart(2, '0'));
 
             // If the count down is finished, write some text
-
             if (distance <= 0) {
                 clearInterval(interval);
                 setDays(String(0).padStart(2, '0'));

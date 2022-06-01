@@ -1,6 +1,6 @@
 const CardLayout = ({ content }) => {
     return (
-        <div className="columns is-centered is-size-7-mobile">
+        <div className="columns is-mobile is-centered">
             <div className="column is-narrow">{content}</div>
         </div>
     );

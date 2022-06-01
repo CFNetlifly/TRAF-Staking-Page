@@ -1,4 +1,4 @@
-import { ADD_TOKEN, REMOVE_ALL_TOKENS, REMOVE_TOKEN } from '../constants';
+import { ADD_TOKEN, REMOVE_ALL_TOKENS, REMOVE_TOKEN, CLEAR_ALL_TOKENS } from '../constants';
 
 export const add_token = ({ token, tokenType }) => {
     return {
@@ -18,5 +18,11 @@ export const remove_token = ({ token, tokenType }) => {
     return {
         type: REMOVE_TOKEN,
         payload: { token, tokenType },
+    };
+};
+
+export const clear_all_tokens = () => {
+    return {
+        type: CLEAR_ALL_TOKENS,
     };
 };

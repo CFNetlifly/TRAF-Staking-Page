@@ -1,16 +1,96 @@
 /* eslint-disable no-nested-ternary */
 import { getLayout as getPageTitleLayout } from 'src/layouts/page-title';
 import { getLayout as getMainLayout } from 'src/layouts/main';
-import { ConnectedWrapper, NetworkWrapper, SwitchNetworkButton } from '@celeste-js/react';
+import { ConnectedWrapper, NetworkWrapper, SwitchNetworkButton, useCelesteSelector } from '@celeste-js/react';
+import { useState, useEffect } from 'react';
+import TRAFProxy from 'src/abi-functions/TRAF-Proxy';
+import { addressBook } from 'celeste.config';
 import ConnectWallet from 'src/components/commons/connect-wallet';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import splitEvery from 'src/static/array-splitter';
+import {
+    approve_nft_request,
+    approve_nft_failure,
+    approve_nft_success,
+    fetch_wallet_data_request,
+} from 'src/redux/actions';
 import LoadingComponent from 'src/components/loading-component';
 import StakingCard from './staking-card';
 import SubmitFooter from './staking-footer';
 
 const Staking = () => {
-    const { walletDataReducer } = useSelector(state => state);
-    // console.log('🚀 ~ file: index.js ~ line 13 ~ Staking ~ walletDataReducer', walletDataReducer);
+    const dispatch = useDispatch();
+
+    const { walletDataReducer, lockTimeReducer, tokenSelectedReducer } = useSelector(state => state);
+
+    const { walletReducer, web3Reducer } = useCelesteSelector(state => state);
+
+    const [isApproved, setIsApproved] = useState(false);
+
+    const checkApproval = async () => {
+        const { address } = walletReducer;
+        const { trafStake } = addressBook;
+        const TRAF = TRAFProxy();
+
+        const approval = await TRAF.isApprovedForAll({ owner: address, operator: trafStake });
+
+        return approval;
+    };
+
+    const approveAll = async () => {
+        const { trafStake } = addressBook;
+        const TRAF = TRAFProxy();
+        try {
+            dispatch(approve_nft_request());
+            const tx = await TRAF.setApprovalForAll(
+                {
+                    address: trafStake,
+                    approved: true,
+                },
+                {
+                    from: walletReducer.address,
+                }
+            );
+            dispatch(approve_nft_success());
+            dispatch(fetch_wallet_data_request({ userAddress: walletReducer.address }));
+            setIsApproved(true);
+        } catch (e) {
+            dispatch(approve_nft_failure(e));
+            console.log(e);
+        }
+    };
+
+    useEffect(() => {
+        (async () => {
+            if (!web3Reducer.initialized || walletReducer.address === null) return;
+            try {
+                const approval = await checkApproval();
+                setIsApproved(approval);
+            } catch (e) {
+                console.log(e);
+            }
+        })();
+    }, [walletReducer.address, web3Reducer.initialized]);
+
+    const handleStake = async () => {
+        const nftData = lockTimeReducer.nfts.filter(item => tokenSelectedReducer.genesisTokens.includes(item.tokenId));
+        try {
+            dispatch(approve_nft_request());
+            const stake = await TRAF.stake(
+                {
+                    ids: nftData.map(item => item.tokenId),
+                    lockTimes: nftData.map(item => item.value),
+                },
+                {
+                    from: walletReducer.address,
+                }
+            );
+            dispatch(approve_nft_success());
+        } catch (e) {
+            dispatch(approve_nft_failure(e));
+            console.log(e);
+        }
+    };
 
     return (
         <section className="section has-text-centered has-font-montserrat ">
@@ -56,13 +136,17 @@ const Staking = () => {
                                     Stake your TRAF NFTs to earn $TRAF tokens
                                 </p>
                                 {walletDataReducer.data.genesisTokens.genesisholder ? (
-                                    <div className="columns">
-                                        {walletDataReducer.data.genesisTokens.nfts.slice(0, 3).map(genesisToken => (
-                                            <div className="column" key={genesisToken}>
-                                                <StakingCard tokenId={genesisToken} />
+                                    splitEvery(walletDataReducer.data.genesisTokens.nfts, 3)
+                                        .slice(0, 2)
+                                        .map((nfts, i) => (
+                                            <div className="columns" key={i}>
+                                                {nfts.map(genesisToken => (
+                                                    <div className="column" key={genesisToken}>
+                                                        <StakingCard tokenId={genesisToken} />
+                                                    </div>
+                                                ))}
                                             </div>
-                                        ))}
-                                    </div>
+                                        ))
                                 ) : (
                                     <div className="content py-4">
                                         <p className="subtitle is-size-7-mobile has-text-white has-font-spacegrotesk">
@@ -70,7 +154,13 @@ const Staking = () => {
                                         </p>
                                     </div>
                                 )}
-                                {walletDataReducer.data.genesisTokens.genesisholder ? <SubmitFooter /> : null}
+                                {walletDataReducer.data.genesisTokens.genesisholder ? (
+                                    <SubmitFooter
+                                        approvalStatus={isApproved}
+                                        approvalAction={approveAll}
+                                        stakeHandler={handleStake}
+                                    />
+                                ) : null}
                             </>
                         ) : walletDataReducer.loading ? (
                             <div className="content py-6">

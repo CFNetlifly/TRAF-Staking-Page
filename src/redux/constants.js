@@ -49,6 +49,7 @@ export const EDIT_GENESIS_NFT = 'EDIT_GENESIS_NFT';
 export const ADD_TOKEN = 'ADD_TOKEN';
 export const REMOVE_TOKEN = 'REMOVE_TOKEN';
 export const REMOVE_ALL_TOKENS = 'REMOVE_ALL_TOKENS';
+export const CLEAR_ALL_TOKENS = 'CLEAR_ALL_TOKENS';
 
 /* *~~*~~*~~*~~*~~* APPROVE NFT *~~*~~*~~*~~*~~* */
 export const APPROVE_NFT_REQUEST = 'APPROVE_NFT_REQUEST';
@@ -60,3 +61,8 @@ export const APPROVE_NFT_FAILURE = 'APPROVE_NFT_FAILURE';
 export const WITHDRAW_NFT_REQUEST = 'WITHDRAW_NFT_REQUEST';
 export const WITHDRAW_NFT_SUCCESS = 'WITHDRAW_NFT_SUCCESS';
 export const WITHDRAW_NFT_FAILURE = 'WITHDRAW_NFT_FAILURE';
+
+/* *~~*~~*~~*~~*~~* STAKE NFT *~~*~~*~~*~~*~~* */
+export const STAKE_NFT_REQUEST = 'STAKE_NFT_REQUEST';
+export const STAKE_NFT_SUCCESS = 'STAKE_NFT_SUCCESS';
+export const STAKE_NFT_FAILURE = 'STAKE_NFT_FAILURE';

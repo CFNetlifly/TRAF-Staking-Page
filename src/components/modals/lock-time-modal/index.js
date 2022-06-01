@@ -12,10 +12,8 @@ const LockTimeModal = () => {
     const dispatch = useDispatch();
 
     const { lockTimeModal } = useSelector(state => state.modalReducer);
-    // console.log('🚀 ~ file: index.js ~ line 15 ~ LockTimeModal ~ lockTimeModal', lockTimeModal);
 
     const { lockTimeReducer } = useSelector(state => state);
-    // console.log('🚀 ~ file: index.js ~ line 18 ~ LockTimeModal ~ lockTimeReducer', lockTimeReducer);
 
     const closeModal = () => dispatch(start_close_modal());
 
@@ -54,7 +52,6 @@ const LockTimeModal = () => {
                                     </h1>
 
                                     {lockTime.map(item => (
-                                        // console.log('🚀 ~ file: index.js ~ line 57 ~ LockTimeModal ~ item', item),
                                         <div className="columns" key={item.uniqueId}>
                                             <div className="column">
                                                 <button

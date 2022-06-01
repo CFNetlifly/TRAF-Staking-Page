@@ -2,7 +2,7 @@ const Footer = () => {
     return (
         <footer className="footer py-5 has-font-montserrat">
             <div className="content has-text-centered">
-                <div className="columns is-centered is-size-7-mobile">
+                <div className="columns is-centered">
                     <div className="column has-text-centered">
                         <div className="is-flex is-flex-direction-row is-justify-content-center">
                             <div className="column is-narrow">

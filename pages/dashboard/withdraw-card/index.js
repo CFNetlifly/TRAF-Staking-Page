@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import TRAFProxy from 'src/abi-functions/TRAF-Proxy';
 import appConfig from 'src/static/app.config';
-import { add_token, remove_token, open_modal } from 'src/redux/actions';
+import { add_token, remove_token, clear_all_tokens, open_modal } from 'src/redux/actions';
 import useEpochCountdown from 'src/components/hooks/useCountdown';
 import CardPicture from 'src/components/commons/card-picture';
 import TimeLeft from './time-left';
@@ -50,7 +50,6 @@ const WithdrawCard = ({ tokenId }) => {
             try {
                 const TRAF = TRAFProxy();
                 const nftStats = await TRAF.stakingStats(tokenId);
-                console.log('🚀 ~ file: index.js ~ line 25 ~ nftStats', nftStats);
                 setStartingTime(nftStats.startingTime);
                 setOCAEarned(nftStats.earned / 10 ** 18);
                 setEndingTime(parseInt(nftStats.startingTime, 10) + parseInt(nftStats.lockTime, 10));
@@ -59,6 +58,12 @@ const WithdrawCard = ({ tokenId }) => {
             }
         })();
     }, [tokenId]);
+
+    useEffect(() => {
+        return () => {
+            dispatch(clear_all_tokens());
+        };
+    }, [dispatch]);
 
     return (
         <CardLayout
@@ -76,7 +81,7 @@ const WithdrawCard = ({ tokenId }) => {
                                         <CardPicture id={tokenId} />
                                     </div>
                                     <div className="column">
-                                        <h1 className="subtitle is-size-4 has-text-white has-font-spacegrotesk">
+                                        <h1 className="subtitle is-size-4 is-size-6-mobile has-text-white has-font-spacegrotesk">
                                             The Red Ape Family
                                             <span className="has-font-ptmono">#{tokenId}</span>
                                         </h1>
@@ -97,12 +102,12 @@ const WithdrawCard = ({ tokenId }) => {
                                     />
                                     <div className="columns is-flex is-align-items-center">
                                         <div className="column is-flex is-justify-content-flex-start">
-                                            <h2 className="subtitle is-size-6 has-text-white has-font-spacegrotesk">
+                                            <h2 className="subtitle is-size-6 is-size-7-mobile has-text-white has-font-spacegrotesk">
                                                 OCA Earned
                                             </h2>
                                         </div>
                                         <div className="column is-flex is-justify-content-flex-end">
-                                            <h2 className="subtitle is-size-6 has-text-white has-font-ptmono">
+                                            <h2 className="subtitle is-size-6 is-size-7-mobile has-text-white has-font-ptmono">
                                                 {OCAEarned}
                                             </h2>
                                         </div>

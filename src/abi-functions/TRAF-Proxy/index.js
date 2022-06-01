@@ -8,7 +8,7 @@ const TRAFProxy = () => {
 
     // const { web3readonly } = web3Reducer;
 
-    const { TRAFStake, TRAFStake_READ } = web3Reducer.contracts;
+    const { TRAFStake } = web3Reducer.contracts;
 
     const ERC721Proxy = new web3.eth.Contract(ERC721ABI, addressBook.trafNFT);
 

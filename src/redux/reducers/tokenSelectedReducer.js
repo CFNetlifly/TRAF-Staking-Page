@@ -1,4 +1,4 @@
-import { ADD_TOKEN, REMOVE_ALL_TOKENS, REMOVE_TOKEN } from '../constants';
+import { ADD_TOKEN, REMOVE_ALL_TOKENS, REMOVE_TOKEN, CLEAR_ALL_TOKENS } from '../constants';
 
 const defaultState = {
     genesisTokens: [],
@@ -25,6 +25,13 @@ const reducer = (state = defaultState, action) => {
                 ...state,
                 [action.payload.tokenType]: [],
             };
+
+        case CLEAR_ALL_TOKENS:
+            return {
+                genesisTokens: [],
+                stakedTokens: [],
+            };
+
         default:
             return state;
     }
