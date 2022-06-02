@@ -113,7 +113,7 @@ const Navbar = () => {
                     </div>
                     <div className="navbar-end is-hidden-desktop">
                         <div className="navbar-item">
-                            <ConnectedWrapper disconnectedComponent={<></>}>
+                            <ConnectedWrapper disconnectedComponent={null}>
                                 <h1 className="has-text-white">
                                     Welcome{' '}
                                     <span className="has-text-hamber has-text-weight-bold">

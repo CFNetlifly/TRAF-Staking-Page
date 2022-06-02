@@ -14,7 +14,7 @@ import {
     approve_nft_success,
     fetch_wallet_data_request,
 } from 'src/redux/actions';
-import LoadingComponent from 'src/components/loading-component';
+import LoadingComponent from 'src/components/commons/loading-component';
 import StakingCard from './staking-card';
 import SubmitFooter from './staking-footer';
 
@@ -42,7 +42,7 @@ const Staking = () => {
         const TRAF = TRAFProxy();
         try {
             dispatch(approve_nft_request());
-            const tx = await TRAF.setApprovalForAll(
+            await TRAF.setApprovalForAll(
                 {
                     address: trafStake,
                     approved: true,
@@ -56,7 +56,6 @@ const Staking = () => {
             setIsApproved(true);
         } catch (e) {
             dispatch(approve_nft_failure(e));
-            console.log(e);
         }
     };
 
@@ -67,16 +66,17 @@ const Staking = () => {
                 const approval = await checkApproval();
                 setIsApproved(approval);
             } catch (e) {
-                console.log(e);
+                setIsApproved(false);
             }
         })();
     }, [walletReducer.address, web3Reducer.initialized]);
 
     const handleStake = async () => {
+        const TRAF = TRAFProxy();
         const nftData = lockTimeReducer.nfts.filter(item => tokenSelectedReducer.genesisTokens.includes(item.tokenId));
         try {
             dispatch(approve_nft_request());
-            const stake = await TRAF.stake(
+            await TRAF.stake(
                 {
                     ids: nftData.map(item => item.tokenId),
                     lockTimes: nftData.map(item => item.value),
@@ -88,7 +88,6 @@ const Staking = () => {
             dispatch(approve_nft_success());
         } catch (e) {
             dispatch(approve_nft_failure(e));
-            console.log(e);
         }
     };
 
@@ -137,9 +136,9 @@ const Staking = () => {
                                 </p>
                                 {walletDataReducer.data.genesisTokens.genesisholder ? (
                                     splitEvery(walletDataReducer.data.genesisTokens.nfts, 3)
-                                        .slice(0, 2)
-                                        .map((nfts, i) => (
-                                            <div className="columns" key={i}>
+                                        .slice(0, 3)
+                                        .map(nfts => (
+                                            <div className="columns is-centered" key={nfts}>
                                                 {nfts.map(genesisToken => (
                                                     <div className="column" key={genesisToken}>
                                                         <StakingCard tokenId={genesisToken} />

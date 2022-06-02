@@ -8,7 +8,7 @@ import CardPicture from 'src/components/commons/card-picture';
 
 const StakingCard = ({ tokenId }) => {
     const dispatch = useDispatch();
-    const { lockTimeReducer, approveNFTReducer } = useSelector(state => state);
+    const { lockTimeReducer } = useSelector(state => state);
 
     const [lockTimeData, setLockTimeData] = useState(lockTimeReducer.nfts.find(item => item.tokenId === tokenId));
     const [isSelected, setIsSelected] = useState(false);

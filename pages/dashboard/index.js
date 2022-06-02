@@ -4,7 +4,8 @@ import { getLayout as getMainLayout } from 'src/layouts/main';
 import { ConnectedWrapper, NetworkWrapper, SwitchNetworkButton } from '@celeste-js/react';
 import ConnectWallet from 'src/components/commons/connect-wallet';
 import { useSelector } from 'react-redux';
-import LoadingComponent from 'src/components/loading-component';
+import LoadingComponent from 'src/components/commons/loading-component';
+import splitEvery from 'src/static/array-splitter';
 import WithdrawCard from './withdraw-card';
 import SubmitFooter from './dashboard-footer';
 
@@ -57,13 +58,15 @@ const Dashboard = () => {
                                             You currently have {walletDataReducer.data.stakedTokens.nfts.length} staked
                                             NFTs
                                         </p>
-                                        <div className="columns">
-                                            {walletDataReducer.data.stakedTokens.nfts.slice(0, 3).map(stakedToken => (
-                                                <div className="column" key={stakedToken}>
-                                                    <WithdrawCard tokenId={stakedToken} />
-                                                </div>
-                                            ))}
-                                        </div>
+                                        {splitEvery(walletDataReducer.data.stakedTokens.nfts, 3).map(nfts => (
+                                            <div className="columns is-centered" key={nfts}>
+                                                {nfts.map(nft => (
+                                                    <div className="column is-one-third" key={nft.id}>
+                                                        <WithdrawCard tokenId={nft} />
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        ))}
                                     </>
                                 ) : (
                                     <div className="content py-4">

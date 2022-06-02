@@ -1,6 +1,6 @@
 import CardLayout from 'src/layouts/card';
 import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import TRAFProxy from 'src/abi-functions/TRAF-Proxy';
 import appConfig from 'src/static/app.config';
 import { add_token, remove_token, clear_all_tokens, open_modal } from 'src/redux/actions';

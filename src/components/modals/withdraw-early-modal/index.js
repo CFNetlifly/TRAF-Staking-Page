@@ -6,7 +6,7 @@ import ModalCardLayout from 'src/layouts/modal-card';
 
 import styles from './styles.module.scss';
 
-const { outter_box, closebutton, item_button, active } = styles;
+const { outter_box } = styles;
 
 const WithdrawEarlyModal = () => {
     const dispatch = useDispatch();

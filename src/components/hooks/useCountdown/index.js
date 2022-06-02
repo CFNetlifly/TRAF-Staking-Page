@@ -6,7 +6,6 @@ const useEpochCountdown = epochUnixTime => {
     const [minutes, setMinutes] = useState(0);
     const [seconds, setSeconds] = useState(0);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     const targetDate = new Date(0);
     targetDate.setUTCSeconds(epochUnixTime);
 

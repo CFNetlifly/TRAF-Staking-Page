@@ -16,7 +16,7 @@ const SubmitFooter = () => {
 
         try {
             dispatch(withdraw_nft_request());
-            const unstake = await TRAF.unstake(
+            await TRAF.unstake(
                 {
                     ids: nftData,
                 },
@@ -27,7 +27,6 @@ const SubmitFooter = () => {
             dispatch(withdraw_nft_success());
         } catch (e) {
             dispatch(withdraw_nft_failure(e));
-            console.log(e);
         }
     };
 

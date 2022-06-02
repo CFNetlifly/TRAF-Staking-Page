@@ -6,7 +6,7 @@ import lockTime from 'src/static/lock-time-stats';
 
 import styles from './styles.module.scss';
 
-const { outter_box, closebutton, item_button, active } = styles;
+const { outter_box, item_button, active } = styles;
 
 const LockTimeModal = () => {
     const dispatch = useDispatch();
