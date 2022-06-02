@@ -39,7 +39,7 @@ const Dashboard = () => {
                                     <SwitchNetworkButton
                                         chainId={4}
                                         className="button is-rounded has-text-black has-background-hamber-o-7 has-text-weight-bold is-borderless has-box-shadow-0-0-10-hamber"
-                                        onErrorCB={e => console.log(e)}
+                                        onErrorCB={() => {}}
                                     >
                                         <span className="icon">
                                             <i className="fas fa-exchange-alt" />

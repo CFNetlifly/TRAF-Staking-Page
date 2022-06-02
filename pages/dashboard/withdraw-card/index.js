@@ -54,7 +54,7 @@ const WithdrawCard = ({ tokenId }) => {
                 setOCAEarned(nftStats.earned / 10 ** 18);
                 setEndingTime(parseInt(nftStats.startingTime, 10) + parseInt(nftStats.lockTime, 10));
             } catch (e) {
-                console.log(e);
+                // console.log(e);
             }
         })();
     }, [tokenId]);

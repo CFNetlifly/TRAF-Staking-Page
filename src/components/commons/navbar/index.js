@@ -124,9 +124,7 @@ const Navbar = () => {
                                     <DisconnectButton
                                         className="button is-rounded has-text-hamber has-background-transparent has-border-1-hamber-o-10"
                                         type="button"
-                                        onErrorCB={e => {
-                                            console.log(e);
-                                        }}
+                                        onErrorCB={() => {}}
                                     >
                                         <span className="icon">
                                             <i className="fas fa-sign-out-alt" />
@@ -146,9 +144,7 @@ const Navbar = () => {
                                         <ConnectButton
                                             className="button is-rounded has-text-hamber has-background-hgrao5 has-text-weight-bold is-shadowless is-borderless"
                                             providerType={providers.INJECTED}
-                                            onErrorCB={e => {
-                                                console.log(e);
-                                            }}
+                                            onErrorCB={() => {}}
                                         >
                                             <span className="icon">
                                                 <i className="fas fa-wallet" />
@@ -178,9 +174,7 @@ const Navbar = () => {
                                                 <DisconnectButton
                                                     className="button is-rounded has-text-hamber has-background-hgrao5 is-shadowless is-borderless"
                                                     type="button"
-                                                    onErrorCB={e => {
-                                                        console.log(e);
-                                                    }}
+                                                    onErrorCB={() => {}}
                                                 >
                                                     <span className="icon">
                                                         <i className="fas fa-sign-out-alt" />

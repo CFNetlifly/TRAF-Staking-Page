@@ -30,7 +30,7 @@ function* fetch_wallet_data_saga(action) {
         yield put(fetch_wallet_data_success(data));
     } catch (error) {
         yield put(fetch_wallet_data_failure());
-        console.log(error);
+        // console.log(error);
     }
 }
 
