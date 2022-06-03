@@ -72,7 +72,7 @@ const Footer = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <p className="subtitle has-text-hamber is-6">
+                                <p className="subtitle is-underlined has-text-hamber is-6">
                                     0x81f296145c5555d7b4b426d97e4e2260c017f5d0
                                 </p>
                             </a>

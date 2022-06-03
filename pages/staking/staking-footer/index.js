@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 
 const SubmitFooter = ({ approvalStatus, approvalAction, stakeHandler }) => {
     const { tokenSelectedReducer, stakeNFTReducer, approveNFTReducer } = useSelector(state => state);
+    console.log('🚀 ~ file: index.js ~ line 5 ~ SubmitFooter ~ stakeNFTReducer', stakeNFTReducer);
 
     return approvalStatus ? (
         <nav className="navbar is-flex is-justify-content-space-between is-align-items-center has-font-montserrat is-fixed-bottom has-background-hgrafooter px-3">

@@ -1,6 +1,11 @@
 import { useCelesteSelector } from '@celeste-js/react';
 import { useSelector, useDispatch } from 'react-redux';
-import { withdraw_nft_request, withdraw_nft_failure, withdraw_nft_success } from 'src/redux/actions';
+import {
+    fetch_wallet_data_request,
+    withdraw_nft_request,
+    withdraw_nft_failure,
+    withdraw_nft_success,
+} from 'src/redux/actions';
 // import { useEffect, useState } from 'react';
 import TRAFProxy from 'src/abi-functions/TRAF-Proxy';
 
@@ -25,6 +30,10 @@ const SubmitFooter = () => {
                 }
             );
             dispatch(withdraw_nft_success());
+
+            setTimeout(() => {
+                dispatch(fetch_wallet_data_request({ userAddress: walletReducer.address }));
+            }, 2000);
         } catch (e) {
             dispatch(withdraw_nft_failure(e));
         }

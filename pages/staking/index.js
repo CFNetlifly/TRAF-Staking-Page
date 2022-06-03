@@ -14,6 +14,9 @@ import {
     approve_nft_failure,
     approve_nft_success,
     fetch_wallet_data_request,
+    stake_nft_request,
+    stake_nft_success,
+    stake_nft_failure,
 } from 'src/redux/actions';
 import LoadingComponent from 'src/components/commons/loading-component';
 import StakingCard from './staking-card';
@@ -23,6 +26,7 @@ const Staking = () => {
     const dispatch = useDispatch();
 
     const { walletDataReducer, lockTimeReducer, tokenSelectedReducer } = useSelector(state => state);
+    console.log('🚀 ~ file: index.js ~ line 26 ~ Staking ~ walletDataReducer', walletDataReducer);
 
     const { walletReducer, web3Reducer } = useCelesteSelector(state => state);
 
@@ -52,9 +56,16 @@ const Staking = () => {
                     from: walletReducer.address,
                 }
             );
+            setTimeout(() => {
+                dispatch(fetch_wallet_data_request({ userAddress: walletReducer.address }));
+            }, 2000);
+
             dispatch(approve_nft_success());
-            dispatch(fetch_wallet_data_request({ userAddress: walletReducer.address }));
             setIsApproved(true);
+
+            setTimeout(() => {
+                dispatch(fetch_wallet_data_request({ userAddress: walletReducer.address }));
+            }, 2000);
         } catch (e) {
             dispatch(approve_nft_failure(e));
         }
@@ -76,7 +87,7 @@ const Staking = () => {
         const TRAF = TRAFProxy();
         const nftData = lockTimeReducer.nfts.filter(item => tokenSelectedReducer.genesisTokens.includes(item.tokenId));
         try {
-            dispatch(approve_nft_request());
+            dispatch(stake_nft_request());
             await TRAF.stake(
                 {
                     ids: nftData.map(item => item.tokenId),
@@ -86,9 +97,14 @@ const Staking = () => {
                     from: walletReducer.address,
                 }
             );
-            dispatch(approve_nft_success());
+
+            dispatch(stake_nft_success());
+
+            setTimeout(() => {
+                dispatch(fetch_wallet_data_request({ userAddress: walletReducer.address }));
+            }, 2000);
         } catch (e) {
-            dispatch(approve_nft_failure(e));
+            dispatch(stake_nft_failure(e));
         }
     };
 
@@ -133,7 +149,7 @@ const Staking = () => {
                         {walletDataReducer.success ? (
                             <>
                                 <p className="subtitle is-size-7-mobile has-text-white has-font-spacegrotesk">
-                                    Stake your TRAF NFTs to earn $TRAF tokens
+                                    Stake your TRAF NFTs to earn $OCA tokens
                                 </p>
                                 {walletDataReducer.data.genesisTokens.genesisholder ? (
                                     splitEvery(walletDataReducer.data.genesisTokens.nfts, 3)
