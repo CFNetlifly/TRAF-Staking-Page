@@ -35,7 +35,7 @@ const Footer = () => {
                                 </a>
                             </div>
                             <div className="column is-narrow">
-                                <a href="https://discord.gg/JeqSUsVQQC" target="_blank" rel="noopener noreferrer">
+                                <a href="https://discord.gg/3W4qjrYGXs" target="_blank" rel="noopener noreferrer">
                                     <span className="icon has-text-white is-size-4">
                                         <i className="fab fa-discord" />
                                     </span>
