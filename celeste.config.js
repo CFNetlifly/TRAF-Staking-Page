@@ -2,14 +2,14 @@ const TRAF = require('./src/static/abis/TRAF-Staking-ABI.json');
 
 module.exports = {
     rpc: {
-        chainId: 4,
-        url: 'https://rinkeby.arbitrum.io/rpc',
+        chainId: 1666700000,
+        url: 'https://trafstakingserver.herokuapp.com',
     },
-    smartContracts: [{ key: 'TRAFStake', abi: TRAF, address: '0x56DE9Af8Dbf394799C7bd539bbC34320C668bF16' }],
+    smartContracts: [{ key: 'TRAFStake', abi: TRAF, address: '0xe83e5b15d64572329DfdbE6fE1c5aA97394939C5' }],
 
     addressBook: {
-        trafNFT: '0xa35D400772425aC844016f52D380173d21E8CF49',
-        ocaToken: '0x7D98935d16611BF3fb2a5b5D0BA36877339d419D',
-        trafStake: '0x56DE9Af8Dbf394799C7bd539bbC34320C668bF16',
+        trafNFT: '0x127B9863BB8f53F79c57e9f02bBBB444b572DBC0',
+        ocaToken: '0xD6134Fa9Df5dacfEc37d24cF649931ebc51578eA',
+        trafStake: '0xe83e5b15d64572329DfdbE6fE1c5aA97394939C5',
     },
 };
