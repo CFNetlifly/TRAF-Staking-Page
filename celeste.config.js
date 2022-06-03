@@ -3,7 +3,7 @@ const TRAF = require('./src/static/abis/TRAF-Staking-ABI.json');
 module.exports = {
     rpc: {
         chainId: 1666700000,
-        url: 'https://trafstakingserver.herokuapp.com',
+        url: 'https://api.s0.b.hmny.io/',
     },
     smartContracts: [{ key: 'TRAFStake', abi: TRAF, address: '0xe83e5b15d64572329DfdbE6fE1c5aA97394939C5' }],
 
