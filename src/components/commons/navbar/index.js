@@ -99,7 +99,7 @@ const Navbar = () => {
                     <div className="navbar-start is-hidden-mobile centered-menu">
                         <NavbarMenu />
                     </div>
-                    <div className="navbar-start is-hidden-desktop">
+                    <div className="navbar-start is-flex is-flex-direction-column is-hidden-desktop">
                         <div className="navbar-item">
                             <Link href="/staking">
                                 <a className="has-text-hamber">Staking</a>
@@ -111,6 +111,7 @@ const Navbar = () => {
                             </Link>
                         </div>
                     </div>
+                    <hr className="is-hidden-desktop" />
                     <div className="navbar-end is-hidden-desktop">
                         <div className="navbar-item">
                             <ConnectedWrapper disconnectedComponent={null}>
@@ -132,6 +133,7 @@ const Navbar = () => {
                                         <span>Disconnect Wallet</span>
                                     </DisconnectButton>
                                 </div>
+                                <hr className="is-hidden-desktop" />
                             </ConnectedWrapper>
                         </div>
                     </div>
