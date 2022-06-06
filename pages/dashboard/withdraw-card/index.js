@@ -19,6 +19,9 @@ const WithdrawCard = ({ tokenId }) => {
     const [isSelected, setIsSelected] = useState(false);
 
     const time = useEpochCountdown(endingTime);
+
+    const isTimeDone = time.days === '00' && time.hours === '00' && time.minutes === '00' && time.seconds === '00';
+
     const { days, hours, minutes, seconds } = time;
 
     const selectHandler = e => {
@@ -49,10 +52,15 @@ const WithdrawCard = ({ tokenId }) => {
         (async () => {
             try {
                 const TRAF = TRAFProxy();
-                const nftStats = await TRAF.stakingStats(tokenId);
-                setStartingTime(nftStats.startingTime);
-                setOCAEarned(nftStats.earned / 10 ** 18);
-                setEndingTime(parseInt(nftStats.startingTime, 10) + parseInt(nftStats.lockTime, 10));
+                const nftStaticStats = await TRAF.stakingStats(tokenId);
+                setStartingTime(nftStaticStats.startingTime);
+                setEndingTime(parseInt(nftStaticStats.startingTime, 10) + parseInt(nftStaticStats.lockTime, 10));
+                setOCAEarned(parseFloat(nftStaticStats.earned / 10 ** 18).toFixed(4));
+
+                setInterval(async () => {
+                    const nftStats = await TRAF.stakingStats(tokenId);
+                    setOCAEarned(parseFloat(nftStats.earned / 10 ** 18).toFixed(4));
+                }, 5000);
             } catch (e) {
                 // console.log(e);
             }
@@ -116,13 +124,14 @@ const WithdrawCard = ({ tokenId }) => {
                                         className="has-background-hamber-o-2 mt-0"
                                         style={{ marginLeft: '-1.5rem', marginRight: '-1.5rem' }}
                                     />
-                                    {days && hours && minutes && seconds > 0 ? (
+                                    {isTimeDone ? (
                                         <div className="columns is-centered">
                                             <div className="column">
                                                 <button
-                                                    className="button is-fullwidth is-rounded is-borderless has-background-hred-o-2 has-text-hred2"
-                                                    type="submit"
-                                                    onClick={selectEarlyWithdraw}
+                                                    className="button is-fullwidth is-rounded is-borderless has-background-hamber-o-2 has-text-hamber"
+                                                    type="button"
+                                                    onClick={selectHandler}
+                                                    // disabled={approveNFTReducer.success === false}
                                                 >
                                                     <span className="has-text-weight-bold">
                                                         {isSelected ? 'Unselect' : 'Select'}
@@ -134,10 +143,9 @@ const WithdrawCard = ({ tokenId }) => {
                                         <div className="columns is-centered">
                                             <div className="column">
                                                 <button
-                                                    className="button is-fullwidth is-rounded is-borderless has-background-hamber-o-2 has-text-hamber"
-                                                    type="button"
-                                                    onClick={selectHandler}
-                                                    // disabled={approveNFTReducer.success === false}
+                                                    className="button is-fullwidth is-rounded is-borderless has-background-hred-o-2 has-text-hred2"
+                                                    type="submit"
+                                                    onClick={selectEarlyWithdraw}
                                                 >
                                                     <span className="has-text-weight-bold">
                                                         {isSelected ? 'Unselect' : 'Select'}

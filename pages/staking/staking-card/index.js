@@ -6,7 +6,7 @@ import CardLayout from 'src/layouts/card';
 import appConfig from 'src/static/app.config';
 import CardPicture from 'src/components/commons/card-picture';
 
-const StakingCard = ({ tokenId }) => {
+const StakingCard = ({ tokenId, approvalStatus }) => {
     const dispatch = useDispatch();
     const { lockTimeReducer } = useSelector(state => state);
 
@@ -126,7 +126,7 @@ const StakingCard = ({ tokenId }) => {
                                         className="button is-fullwidth is-size-7-mobile is-rounded is-borderless has-background-hamber-o-2 has-text-hamber"
                                         type="button"
                                         onClick={selectHandler}
-                                        // disabled={approveNFTReducer.success === false}
+                                        disabled={approvalStatus === false}
                                     >
                                         <span className="has-text-weight-bold">
                                             {isSelected ? 'Unselect' : 'Select'}

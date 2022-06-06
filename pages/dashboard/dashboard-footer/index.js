@@ -29,11 +29,10 @@ const SubmitFooter = () => {
                     from: walletReducer.address,
                 }
             );
-            dispatch(withdraw_nft_success());
-
             setTimeout(() => {
                 dispatch(fetch_wallet_data_request({ userAddress: walletReducer.address }));
-            }, 2000);
+            }, 5000);
+            dispatch(withdraw_nft_success());
         } catch (e) {
             dispatch(withdraw_nft_failure(e));
         }

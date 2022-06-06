@@ -61,18 +61,33 @@ const Dashboard = () => {
                                         {splitEvery(walletDataReducer.data.stakedTokens.nfts, 3).map(nfts => (
                                             <div className="columns is-centered" key={nfts}>
                                                 {nfts.map(nft => (
-                                                    <div className="column is-one-third" key={nft.id}>
+                                                    <div className="column is-one-third" key={nft}>
                                                         <WithdrawCard tokenId={nft} />
                                                     </div>
                                                 ))}
                                             </div>
                                         ))}
                                     </>
-                                ) : (
+                                ) : walletDataReducer.data.genesisTokens.genesisholder ? (
                                     <div className="content py-4">
                                         <p className="subtitle is-size-7-mobile has-text-white has-font-spacegrotesk">
                                             You currently don&#39;t have any staked NFTs, please stake one to view your
                                             dashboard.
+                                        </p>
+                                    </div>
+                                ) : (
+                                    <div className="content py-4">
+                                        <p className="subtitle is-size-7-mobile has-text-white has-font-spacegrotesk">
+                                            You currently don&#39;t own any NFTs, please buy one at{' '}
+                                            <a
+                                                className="is-underlined has-text-white"
+                                                href="https://opensea.io/collection/theredapefamilygenesis"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                opensea
+                                            </a>{' '}
+                                            to stake.
                                         </p>
                                     </div>
                                 )}

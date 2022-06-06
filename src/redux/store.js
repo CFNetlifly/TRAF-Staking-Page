@@ -15,6 +15,7 @@ import tokenSelectedReducer from './reducers/tokenSelectedReducer';
 import approveNFTReducer from './reducers/approveNFTReducer';
 import withdrawNFTReducer from './reducers/withdrawNFTReducer';
 import stakeNFTReducer from './reducers/stakeNFTReducer';
+import loadingReducer from './reducers/loadingReducer';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -29,6 +30,7 @@ const reducer = combineReducers({
     withdrawNFTReducer,
     approveNFTReducer,
     stakeNFTReducer,
+    loadingReducer,
 });
 
 const store = createStore(reducer, applyMiddleware(thunk, sagaMiddleware));

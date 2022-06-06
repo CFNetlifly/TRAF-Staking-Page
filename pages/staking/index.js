@@ -17,6 +17,9 @@ import {
     stake_nft_request,
     stake_nft_success,
     stake_nft_failure,
+    // set_loading_request,
+    // set_loading_success,
+    // set_loading_failure,
 } from 'src/redux/actions';
 import LoadingComponent from 'src/components/commons/loading-component';
 import StakingCard from './staking-card';
@@ -26,7 +29,6 @@ const Staking = () => {
     const dispatch = useDispatch();
 
     const { walletDataReducer, lockTimeReducer, tokenSelectedReducer } = useSelector(state => state);
-    console.log('🚀 ~ file: index.js ~ line 26 ~ Staking ~ walletDataReducer', walletDataReducer);
 
     const { walletReducer, web3Reducer } = useCelesteSelector(state => state);
 
@@ -56,18 +58,16 @@ const Staking = () => {
                     from: walletReducer.address,
                 }
             );
-            setTimeout(() => {
-                dispatch(fetch_wallet_data_request({ userAddress: walletReducer.address }));
-            }, 2000);
 
+            dispatch(fetch_wallet_data_request({ userAddress: walletReducer.address }));
             dispatch(approve_nft_success());
-            setIsApproved(true);
 
-            setTimeout(() => {
-                dispatch(fetch_wallet_data_request({ userAddress: walletReducer.address }));
-            }, 2000);
+            setIsApproved(true);
         } catch (e) {
             dispatch(approve_nft_failure(e));
+        } finally {
+            const approval = await checkApproval();
+            setIsApproved(approval);
         }
     };
 
@@ -97,12 +97,10 @@ const Staking = () => {
                     from: walletReducer.address,
                 }
             );
-
-            dispatch(stake_nft_success());
-
             setTimeout(() => {
                 dispatch(fetch_wallet_data_request({ userAddress: walletReducer.address }));
-            }, 2000);
+            }, 5000);
+            dispatch(stake_nft_success());
         } catch (e) {
             dispatch(stake_nft_failure(e));
         }
@@ -158,11 +156,20 @@ const Staking = () => {
                                             <div className="columns is-centered" key={nfts}>
                                                 {nfts.map(genesisToken => (
                                                     <div className="column" key={genesisToken}>
-                                                        <StakingCard tokenId={genesisToken} />
+                                                        <StakingCard
+                                                            tokenId={genesisToken}
+                                                            approvalStatus={isApproved}
+                                                        />
                                                     </div>
                                                 ))}
                                             </div>
                                         ))
+                                ) : walletDataReducer.data.stakedTokens.staker ? (
+                                    <div className="content py-4">
+                                        <p className="subtitle is-size-7-mobile has-text-white has-font-spacegrotesk">
+                                            You have staked all of your NFTs, check them on the dashboard
+                                        </p>
+                                    </div>
                                 ) : (
                                     <div className="content py-4">
                                         <p className="subtitle is-size-7-mobile has-text-white has-font-spacegrotesk">
