@@ -26,11 +26,18 @@ export const errorNotification = (title, message) => ({
     type: 'custom-error',
 });
 
-export const infoNotification = (message) => ({
+export const infoNotification = message => ({
     ...genericNotification,
     title: 'Info',
     message,
     type: 'custom-info',
+});
+
+export const warningNotification = message => ({
+    ...genericNotification,
+    title: 'Warning',
+    message,
+    type: 'custom-warning',
 });
 
 export const custom_notification_types = [
@@ -45,5 +52,9 @@ export const custom_notification_types = [
     {
         htmlClasses: ['notification__item__info'],
         name: 'custom-info',
+    },
+    {
+        htmlClasses: ['notification__item__warning'],
+        name: 'custom-warning',
     },
 ];

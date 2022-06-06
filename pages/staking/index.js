@@ -5,6 +5,7 @@ import { getLayout as getMainLayout } from 'src/layouts/main';
 import { ConnectedWrapper, NetworkWrapper, SwitchNetworkButton, useCelesteSelector } from '@celeste-js/react';
 import { useState, useEffect } from 'react';
 import TRAFProxy from 'src/abi-functions/TRAF-Proxy';
+import { Store as NotificationsStore } from 'react-notifications-component';
 import { addressBook } from 'celeste.config';
 import ConnectWallet from 'src/components/commons/connect-wallet';
 import { useSelector, useDispatch } from 'react-redux';
@@ -22,6 +23,7 @@ import {
     // set_loading_failure,
 } from 'src/redux/actions';
 import LoadingComponent from 'src/components/commons/loading-component';
+import { successNotification, warningNotification } from 'src/static/notifications';
 import StakingCard from './staking-card';
 import SubmitFooter from './staking-footer';
 
@@ -59,15 +61,32 @@ const Staking = () => {
                 }
             );
 
-            dispatch(fetch_wallet_data_request({ userAddress: walletReducer.address }));
-            dispatch(approve_nft_success());
+            setTimeout(() => {
+                NotificationsStore.addNotification(
+                    warningNotification(
+                        'Transaction loading...',
+                        'Your transaction is being processed, give us a moment'
+                    )
+                );
+            }, 1000);
 
-            setIsApproved(true);
+            setTimeout(() => {
+                NotificationsStore.addNotification(warningNotification('Just a moment...'));
+            }, 5000);
+
+            setTimeout(() => {
+                NotificationsStore.addNotification(warningNotification('Almost there...'));
+            }, 10000);
+
+            setTimeout(() => {
+                NotificationsStore.addNotification(successNotification('Done!'));
+                dispatch(fetch_wallet_data_request({ userAddress: walletReducer.address }));
+                dispatch(approve_nft_success());
+                const approval = checkApproval();
+                setIsApproved(approval);
+            }, 20000);
         } catch (e) {
             dispatch(approve_nft_failure(e));
-        } finally {
-            const approval = await checkApproval();
-            setIsApproved(approval);
         }
     };
 
@@ -97,10 +116,29 @@ const Staking = () => {
                     from: walletReducer.address,
                 }
             );
+            await checkApproval();
             setTimeout(() => {
-                dispatch(fetch_wallet_data_request({ userAddress: walletReducer.address }));
+                NotificationsStore.addNotification(
+                    warningNotification(
+                        'Transaction loading...',
+                        'Your transaction is being processed, give us a moment'
+                    )
+                );
+            }, 1000);
+
+            setTimeout(() => {
+                NotificationsStore.addNotification(warningNotification('Just a moment...'));
             }, 5000);
-            dispatch(stake_nft_success());
+
+            setTimeout(() => {
+                NotificationsStore.addNotification(warningNotification('Almost there...'));
+            }, 10000);
+
+            setTimeout(() => {
+                NotificationsStore.addNotification(successNotification('Done!'));
+                dispatch(fetch_wallet_data_request({ userAddress: walletReducer.address }));
+                dispatch(stake_nft_success());
+            }, 10000);
         } catch (e) {
             dispatch(stake_nft_failure(e));
         }

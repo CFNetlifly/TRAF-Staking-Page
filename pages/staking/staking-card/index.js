@@ -122,16 +122,27 @@ const StakingCard = ({ tokenId, approvalStatus }) => {
                                     <p className="subtitle is-size-6 is-size-7-mobile has-text-white has-font-spacegrotesk">
                                         Increase the lock time to get higher APR %
                                     </p>
-                                    <button
-                                        className="button is-fullwidth is-size-7-mobile is-rounded is-borderless has-background-hamber-o-2 has-text-hamber"
-                                        type="button"
-                                        onClick={selectHandler}
-                                        disabled={approvalStatus === false}
-                                    >
-                                        <span className="has-text-weight-bold">
-                                            {isSelected ? 'Unselect' : 'Select'}
-                                        </span>
-                                    </button>
+                                    {approvalStatus ? (
+                                        <button
+                                            className="button is-fullwidth is-size-7-mobile is-rounded is-borderless has-background-hamber-o-2 has-text-hamber"
+                                            type="button"
+                                            onClick={selectHandler}
+                                        >
+                                            <span className="has-text-weight-bold">
+                                                {isSelected ? 'Unselect' : 'Select'}
+                                            </span>
+                                        </button>
+                                    ) : (
+                                        <button
+                                            className="button is-fullwidth is-size-7-mobile is-rounded is-borderless has-background-hamber-o-2 has-text-hamber"
+                                            type="button"
+                                            disabled
+                                        >
+                                            <span className="has-text-weight-bold">
+                                                Please approve the token to select
+                                            </span>
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                         </div>

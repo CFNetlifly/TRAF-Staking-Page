@@ -1,5 +1,7 @@
 import { useCelesteSelector } from '@celeste-js/react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Store as NotificationsStore } from 'react-notifications-component';
+import { successNotification, warningNotification } from 'src/static/notifications';
 import {
     fetch_wallet_data_request,
     withdraw_nft_request,
@@ -30,9 +32,26 @@ const SubmitFooter = () => {
                 }
             );
             setTimeout(() => {
-                dispatch(fetch_wallet_data_request({ userAddress: walletReducer.address }));
+                NotificationsStore.addNotification(
+                    warningNotification(
+                        'Transaction loading...',
+                        'Your transaction is being processed, give us a moment'
+                    )
+                );
+            }, 1000);
+
+            setTimeout(() => {
+                NotificationsStore.addNotification(warningNotification('Just a moment...'));
             }, 5000);
-            dispatch(withdraw_nft_success());
+
+            setTimeout(() => {
+                NotificationsStore.addNotification(warningNotification('Almost there...'));
+            }, 10000);
+            setTimeout(() => {
+                NotificationsStore.addNotification(successNotification('Done!'));
+                dispatch(fetch_wallet_data_request({ userAddress: walletReducer.address }));
+                dispatch(withdraw_nft_success());
+            }, 20000);
         } catch (e) {
             dispatch(withdraw_nft_failure(e));
         }
