@@ -8,6 +8,7 @@ import {
     ADD_GENESIS_NFT,
     EDIT_GENESIS_NFT,
     REMOVE_GENESIS_NFT,
+    CLEAN_GENESIS_NFT,
 } from '../constants';
 
 const defaultState = {
@@ -32,6 +33,13 @@ const reducer = (state = defaultState, action) => {
                 ...state,
                 nfts: [...state.nfts.filter(nft => nft.tokenId !== action.payload)],
             };
+
+        case CLEAN_GENESIS_NFT:
+            return {
+                ...state,
+                nfts: [],
+            };
+
         default:
             return state;
     }

@@ -33,10 +33,7 @@ const SubmitFooter = () => {
             );
             setTimeout(() => {
                 NotificationsStore.addNotification(
-                    warningNotification(
-                        'Transaction loading...',
-                        'Your transaction is being processed, give us a moment'
-                    )
+                    warningNotification('Updating the UI, please wait...', 'This might take a few seconds.')
                 );
             }, 1000);
 
@@ -51,7 +48,7 @@ const SubmitFooter = () => {
                 NotificationsStore.addNotification(successNotification('Done!'));
                 dispatch(fetch_wallet_data_request({ userAddress: walletReducer.address }));
                 dispatch(withdraw_nft_success());
-            }, 20000);
+            }, 12000);
         } catch (e) {
             dispatch(withdraw_nft_failure(e));
         }

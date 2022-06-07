@@ -1,13 +1,13 @@
 const lockTime = [
-    {
-        uniqueId: 0,
-        buttonName: '1 Minute',
-        name: '1 Minute',
-        value: 60,
-        apr: 0.5,
-        roi: 0.1,
-        roiDisplay: '0.1',
-    },
+    // {
+    //     uniqueId: 0,
+    //     buttonName: '1 Minute',
+    //     name: '1 Minute',
+    //     value: 60,
+    //     apr: 0.5,
+    //     roi: 0.1,
+    //     roiDisplay: '0.1',
+    // },
     {
         uniqueId: 1,
         buttonName: '1 Month',

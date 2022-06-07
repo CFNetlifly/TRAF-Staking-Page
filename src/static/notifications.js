@@ -33,9 +33,9 @@ export const infoNotification = message => ({
     type: 'custom-info',
 });
 
-export const warningNotification = message => ({
+export const warningNotification = (title, message) => ({
     ...genericNotification,
-    title: 'Warning',
+    title,
     message,
     type: 'custom-warning',
 });

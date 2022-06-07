@@ -8,6 +8,7 @@ import {
     ADD_GENESIS_NFT,
     EDIT_GENESIS_NFT,
     REMOVE_GENESIS_NFT,
+    CLEAN_GENESIS_NFT,
 } from '../constants';
 
 // export const set_lock_time = lockTime => ({
@@ -53,4 +54,8 @@ export const edit_genesis_nft = nft => ({
 export const remove_genesis_nft = id => ({
     type: REMOVE_GENESIS_NFT,
     payload: id,
+});
+
+export const clean_genesis_nft = () => ({
+    type: CLEAN_GENESIS_NFT,
 });

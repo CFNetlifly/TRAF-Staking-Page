@@ -43,6 +43,7 @@ export const CLEAN_WALLET_DATA = 'CLEAN_WALLET_DATA';
 export const ADD_GENESIS_NFT = 'ADD_GENESIS_NFT';
 export const REMOVE_GENESIS_NFT = 'REMOVE_GENESIS_NFT';
 export const EDIT_GENESIS_NFT = 'EDIT_GENESIS_NFT';
+export const CLEAN_GENESIS_NFT = 'CLEAN_GENESIS_NFT';
 
 /* *~~*~~*~~*~~*~~* TOKEN SELECTED *~~*~~*~~*~~*~~* */
 

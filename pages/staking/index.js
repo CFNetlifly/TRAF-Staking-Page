@@ -18,6 +18,7 @@ import {
     stake_nft_request,
     stake_nft_success,
     stake_nft_failure,
+    clean_genesis_nft,
     // set_loading_request,
     // set_loading_success,
     // set_loading_failure,
@@ -61,30 +62,12 @@ const Staking = () => {
                 }
             );
 
-            setTimeout(() => {
-                NotificationsStore.addNotification(
-                    warningNotification(
-                        'Transaction loading...',
-                        'Your transaction is being processed, give us a moment'
-                    )
-                );
-            }, 1000);
-
-            setTimeout(() => {
-                NotificationsStore.addNotification(warningNotification('Just a moment...'));
-            }, 5000);
-
-            setTimeout(() => {
-                NotificationsStore.addNotification(warningNotification('Almost there...'));
-            }, 10000);
-
-            setTimeout(() => {
-                NotificationsStore.addNotification(successNotification('Done!'));
-                dispatch(fetch_wallet_data_request({ userAddress: walletReducer.address }));
-                dispatch(approve_nft_success());
-                const approval = checkApproval();
-                setIsApproved(approval);
-            }, 20000);
+            NotificationsStore.addNotification(
+                successNotification('Approved', 'You have successfully approved the NFTs.')
+            );
+            dispatch(fetch_wallet_data_request({ userAddress: walletReducer.address }));
+            dispatch(approve_nft_success());
+            setIsApproved(true);
         } catch (e) {
             dispatch(approve_nft_failure(e));
         }
@@ -104,7 +87,10 @@ const Staking = () => {
 
     const handleStake = async () => {
         const TRAF = TRAFProxy();
+
         const nftData = lockTimeReducer.nfts.filter(item => tokenSelectedReducer.genesisTokens.includes(item.tokenId));
+        console.log('🚀 ~ file: index.js ~ line 91 ~ handleStake ~ nftData', nftData);
+
         try {
             dispatch(stake_nft_request());
             await TRAF.stake(
@@ -116,13 +102,10 @@ const Staking = () => {
                     from: walletReducer.address,
                 }
             );
-            await checkApproval();
+
             setTimeout(() => {
                 NotificationsStore.addNotification(
-                    warningNotification(
-                        'Transaction loading...',
-                        'Your transaction is being processed, give us a moment'
-                    )
+                    warningNotification('Updating the UI, please wait...', 'This might take a few seconds.')
                 );
             }, 1000);
 
@@ -132,11 +115,12 @@ const Staking = () => {
 
             setTimeout(() => {
                 NotificationsStore.addNotification(warningNotification('Almost there...'));
-            }, 10000);
+            }, 8000);
 
             setTimeout(() => {
                 NotificationsStore.addNotification(successNotification('Done!'));
                 dispatch(fetch_wallet_data_request({ userAddress: walletReducer.address }));
+                dispatch(clean_genesis_nft());
                 dispatch(stake_nft_success());
             }, 10000);
         } catch (e) {

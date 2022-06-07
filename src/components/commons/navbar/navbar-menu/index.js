@@ -24,9 +24,9 @@ const NavbarMenu = () => {
     return (
         <div className="is-flex is-align-items-center">
             <div className=" has-background-hgrao5 has-border-radius-20 p-1">
-                <div className="columns">
+                <div className="columns is-gapless">
                     {navItems.map(item => (
-                        <div className="column" key={item.id}>
+                        <div className="column is-flex is-justify-content-space-evenly" key={item.id}>
                             <Link href={item.href} passHref>
                                 <button
                                     key={item.id}
