@@ -89,7 +89,6 @@ const Staking = () => {
         const TRAF = TRAFProxy();
 
         const nftData = lockTimeReducer.nfts.filter(item => tokenSelectedReducer.genesisTokens.includes(item.tokenId));
-        console.log('🚀 ~ file: index.js ~ line 91 ~ handleStake ~ nftData', nftData);
 
         try {
             dispatch(stake_nft_request());
