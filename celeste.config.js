@@ -5,11 +5,11 @@ module.exports = {
         chainId: 1666700000,
         url: 'https://api.s0.b.hmny.io/',
     },
-    smartContracts: [{ key: 'TRAFStake', abi: TRAF, address: '0x7Fb0F4bC8e8eBB0bc0d6CF589515212c68Fc08e2' }],
+    smartContracts: [{ key: 'TRAFStake', abi: TRAF, address: '0x6B447CEe8a97b5814cDCCE4CbdB0C082318baEE6' }],
 
     addressBook: {
-        trafNFT: '0x127B9863BB8f53F79c57e9f02bBBB444b572DBC0',
-        ocaToken: '0xD6134Fa9Df5dacfEc37d24cF649931ebc51578eA',
-        trafStake: '0x7Fb0F4bC8e8eBB0bc0d6CF589515212c68Fc08e2',
+        trafNFT: '0x81f296145C5555d7b4B426D97E4e2260c017F5d0',
+        ocaToken: '0x3f8C3b9F543910F611585E3821B00af0617580A7',
+        trafStake: '0x6B447CEe8a97b5814cDCCE4CbdB0C082318baEE6',
     },
 };
