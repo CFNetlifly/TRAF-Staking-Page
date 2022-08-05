@@ -14,8 +14,8 @@ const lockTime = [
         name: '1 Month - 4% APR',
         value: 2592000,
         apr: 4,
-        roi: 50,
-        roiDisplay: '50',
+        roi: 20,
+        roiDisplay: '20',
     },
 
     {
@@ -24,8 +24,8 @@ const lockTime = [
         name: '3 Months - 8% APR',
         value: 7776000,
         apr: 8,
-        roi: 300,
-        roiDisplay: '300',
+        roi: 120,
+        roiDisplay: '120',
     },
     {
         uniqueId: 3,
@@ -33,8 +33,8 @@ const lockTime = [
         name: '6 Months - 12% APR',
         value: 15552000,
         apr: 12,
-        roi: 900,
-        roiDisplay: '900',
+        roi: 360,
+        roiDisplay: '360',
     },
     {
         uniqueId: 4,
@@ -42,8 +42,8 @@ const lockTime = [
         name: '9 Months - 18% APR',
         value: 23328000,
         apr: 18,
-        roi: 2025,
-        roiDisplay: '2,025',
+        roi: 810,
+        roiDisplay: '810',
     },
     {
         uniqueId: 5,
@@ -51,8 +51,8 @@ const lockTime = [
         name: '1 Year - 36% APR',
         value: 31536000,
         apr: 36,
-        roi: 5400,
-        roiDisplay: '5,400',
+        roi: 2160,
+        roiDisplay: '2,160',
     },
     {
         uniqueId: 6,
@@ -60,8 +60,8 @@ const lockTime = [
         name: '2 Years - 100% APR',
         value: 63072000,
         apr: 100,
-        roi: 30000,
-        roiDisplay: '30,000',
+        roi: 12000,
+        roiDisplay: '12,000',
     },
 ];
 
