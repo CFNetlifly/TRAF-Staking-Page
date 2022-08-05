@@ -2,8 +2,10 @@ const TRAF = require('./src/static/abis/TRAF-Staking-ABI.json');
 
 module.exports = {
     rpc: {
-        chainId: 1666700000,
-        url: 'https://api.s0.b.hmny.io/',
+        // chainId: 1666700000,
+        chainId: 1,
+        // url: 'https://api.s0.b.hmny.io/',
+        url: 'https://mainnet.infura.io/v3/fa471aa86d124cde87836175143616f6',
     },
     smartContracts: [{ key: 'TRAFStake', abi: TRAF, address: '0x6B447CEe8a97b5814cDCCE4CbdB0C082318baEE6' }],
 

@@ -152,7 +152,7 @@ const Staking = () => {
                                 </p>
                                 <div className="py-6">
                                     <SwitchNetworkButton
-                                        chainId={1666700000}
+                                        chainId={1}
                                         className="button is-rounded has-text-black has-background-hamber-o-7 has-text-weight-bold is-borderless has-box-shadow-0-0-10-hamber"
                                         onErrorCB={() => {}}
                                     >
