@@ -76,7 +76,7 @@ const Footer = () => {
                                     0x81f296145c5555d7b4b426d97e4e2260c017f5d0
                                 </p>
                             </a>
-                            <p className="subtitle has-text-hamber is-6 mb-3 pt-5">traf@zainimedia.com</p>
+                            <p className="subtitle has-text-hamber is-6 mb-3 pt-5">hello@traf.world</p>
                             <p className="subtitle has-text-hamber is-6 mb-3">
                                 © 2022 The Red Ape Family. All rights reserved
                             </p>
