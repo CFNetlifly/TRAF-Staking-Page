@@ -1,4 +1,4 @@
-import { store as celesteStore } from '@celeste-js/store';
+import { store as celesteStore } from '@celestejs/store';
 import { addressBook } from 'celeste.config';
 import ERC721ABI from 'src/static/abis/ERC-721.json';
 

@@ -2,7 +2,7 @@
 /* eslint-disable no-nested-ternary */
 import { getLayout as getPageTitleLayout } from 'src/layouts/page-title';
 import { getLayout as getMainLayout } from 'src/layouts/main';
-import { ConnectedWrapper, NetworkWrapper, SwitchNetworkButton, useCelesteSelector } from '@celeste-js/react';
+import { ConnectedWrapper, NetworkWrapper, SwitchNetworkButton, useCelesteSelector } from '@celestejs/react';
 import { useState, useEffect } from 'react';
 import TRAFProxy from 'src/abi-functions/TRAF-Proxy';
 import { Store as NotificationsStore } from 'react-notifications-component';

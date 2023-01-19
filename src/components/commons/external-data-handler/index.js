@@ -1,4 +1,4 @@
-import { ConnectedWrapper, NetworkWrapper, useCelesteSelector } from '@celeste-js/react';
+import { ConnectedWrapper, NetworkWrapper, useCelesteSelector } from '@celestejs/react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetch_wallet_data_request, clean_wallet_data } from 'src/redux/actions';

@@ -1,6 +1,6 @@
-import CelesteJS from '@celeste-js/core';
+import CelesteJS from '@celestejs/core';
 
-import { CelesteStoreProvider, CelesteProvider } from '@celeste-js/react';
+import { CelesteStoreProvider, CelesteProvider } from '@celestejs/react';
 
 import celesteConfig from 'celeste.config';
 

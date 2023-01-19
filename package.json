@@ -12,9 +12,9 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@celeste-js/core": "^1.1.0",
-    "@celeste-js/react": "^1.0.4",
-    "@celeste-js/store": "^2.1.2",
+    "@celestejs/core": "^0.6.0",
+    "@celestejs/react": "^0.6.0",
+    "@celestejs/store": "^0.6.0",
     "animate.css": "^4.1.1",
     "axios": "^0.26.1",
     "bulma": "^0.9.3",

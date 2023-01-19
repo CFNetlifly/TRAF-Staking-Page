@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import { getLayout as getPageTitleLayout } from 'src/layouts/page-title';
 import { getLayout as getMainLayout } from 'src/layouts/main';
-import { ConnectedWrapper, NetworkWrapper, SwitchNetworkButton } from '@celeste-js/react';
+import { ConnectedWrapper, NetworkWrapper, SwitchNetworkButton } from '@celestejs/react';
 import ConnectWallet from 'src/components/commons/connect-wallet';
 import { useSelector } from 'react-redux';
 import LoadingComponent from 'src/components/commons/loading-component';

@@ -3,10 +3,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Image from 'next/image';
 import Link from 'next/link';
-import { DisconnectButton, useCelesteSelector, ConnectedWrapper, ConnectButton } from '@celeste-js/react';
+import { DisconnectButton, useCelesteSelector, ConnectedWrapper, ConnectButton } from '@celestejs/react';
 
 import { useState, useEffect } from 'react';
-import { providers } from '@celeste-js/core/dist/constants';
+import { providers } from '@celestejs/core/dist/constants';
 
 import NavbarMenu from './navbar-menu';
 

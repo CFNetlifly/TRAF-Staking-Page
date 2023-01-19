@@ -1,5 +1,5 @@
-import { ConnectButton } from '@celeste-js/react';
-import { providers } from '@celeste-js/core/dist/constants';
+import { ConnectButton } from '@celestejs/react';
+import { providers } from '@celestejs/core/dist/constants';
 
 const ConnectWallet = () => {
     return (

@@ -1,4 +1,4 @@
-import { useCelesteSelector } from '@celeste-js/react';
+import { useCelesteSelector } from '@celestejs/react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Store as NotificationsStore } from 'react-notifications-component';
 import { successNotification, warningNotification } from 'src/static/notifications';
